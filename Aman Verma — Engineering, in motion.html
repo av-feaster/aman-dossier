@@ -1,0 +1,274 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>Aman Verma — Engineering, in motion</title>
+<style>
+  :root{
+    --paper:#ECEEF1; --panel:#F7F8FA; --panel-2:#FFFFFF;
+    --ink:#121820; --soft:#56606B; --faint:#8A939D;
+    --rule:#D4D9DF; --rule-strong:#B4BBC3;
+    --navy:#15508C; --teal:#0E8C78; --amber:#B8791A;
+    --term-bg:#0E1620; --term-ink:#D6E2E0; --term-dim:#6D8A86; --term-green:#4Fd1b5; --term-amber:#E0A94A; --term-blue:#6AA6E0;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,sans-serif;
+    --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  :root[data-theme="dark"]{
+    --paper:#11161D; --panel:#1A212B; --panel-2:#212A36;
+    --ink:#E9EDF2; --soft:#A7B2BF; --faint:#6B7784;
+    --rule:#283039; --rule-strong:#3A4654;
+    --navy:#6AA6E0; --teal:#3FC3A8; --amber:#D8A044;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+    background-size:30px 30px; background-position:-1px -1px;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 26px 120px;}
+  h1,h2,h3{font-family:var(--serif); font-weight:700; line-height:1.12; text-wrap:balance; margin:0;}
+  .mono{font-family:var(--mono);}
+
+  .theme-toggle{position:fixed; top:16px; right:16px; z-index:60; display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--soft); background:var(--panel-2); border:1px solid var(--rule-strong); padding:7px 11px; cursor:pointer;}
+  .theme-toggle:hover{color:var(--ink); border-color:var(--navy);}
+  .theme-toggle:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .theme-toggle .ico{width:14px; height:14px;}
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0; transform:translateY(22px);}
+  .reveal.in{opacity:1; transform:none; transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+
+  /* hero */
+  header{padding:92px 0 20px;}
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); font-weight:600;}
+  h1{font-size:clamp(34px,6.6vw,62px); letter-spacing:-.02em; margin:16px 0 0;}
+  h1 .q{color:var(--navy); font-style:italic;}
+  .lede{font-family:var(--serif); font-size:clamp(17px,2.4vw,21px); font-style:italic; color:var(--ink); max-width:60ch; margin:18px 0 0; line-height:1.46; border-left:4px solid var(--teal); padding-left:20px;}
+  .byline{font-family:var(--mono); font-size:12.5px; color:var(--soft); margin:22px 0 0;}
+  .scrollcue{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-top:40px; display:flex; align-items:center; gap:8px;}
+  .scrollcue .down{animation:bob 1.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+  /* section scaffold */
+  section{margin-top:90px;}
+  .slabel{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-bottom:12px;}
+  h2{font-size:clamp(23px,3.6vw,32px); letter-spacing:-.015em;}
+  .sintro{color:var(--soft); max-width:64ch; margin-top:12px;}
+
+  /* terminal */
+  .term{margin-top:26px; background:var(--term-bg); border:1px solid #223041; border-radius:8px; overflow:hidden; box-shadow:0 18px 50px -24px rgba(8,16,24,.55);}
+  .term-bar{display:flex; align-items:center; gap:8px; padding:11px 14px; background:#121D28; border-bottom:1px solid #223041;}
+  .term-bar .dot{width:11px; height:11px; border-radius:50%;}
+  .term-bar .r{background:#E06C60} .term-bar .y{background:#E0B24A} .term-bar .g{background:#4FB974}
+  .term-bar .ttl{margin-left:8px; font-family:var(--mono); font-size:11px; color:#5E7585; letter-spacing:.03em;}
+  .term-body{padding:18px 20px 22px; font-family:var(--mono); font-size:13.5px; line-height:1.7; color:var(--term-ink); min-height:360px;}
+  @media(max-width:560px){.term-body{font-size:11.5px; padding:14px; min-height:330px;}}
+  .term-body .cmd{color:#fff;}
+  .term-body .cmd .pr{color:var(--term-green);}
+  .cursor{display:inline-block; width:8px; height:1.05em; background:var(--term-green); vertical-align:-2px; margin-left:2px; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0}}
+  .tline{opacity:0; transform:translateY(5px); display:block; white-space:pre-wrap; word-break:break-word;}
+  .tline.show{opacity:1; transform:none; transition:opacity .28s ease, transform .28s ease;}
+  .tline .yr{color:var(--term-amber);}
+  .tline .role{color:var(--term-dim);}
+  .tline .pips{color:var(--term-green); letter-spacing:1px;}
+  .tline .txt{color:var(--term-ink);}
+  .tline.sum{color:var(--term-green); margin-top:6px;}
+  .tline.sum b{color:#fff; font-weight:700;}
+
+  /* counters */
+  .counters{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:26px;}
+  @media(max-width:700px){.counters{grid-template-columns:repeat(2,1fr);}}
+  .cnt{border:1px solid var(--rule-strong); background:var(--panel-2); border-left:3px solid var(--teal); padding:18px 18px 16px;}
+  .cnt .v{font-family:var(--serif); font-weight:700; font-size:clamp(30px,5vw,42px); letter-spacing:-.02em; color:var(--navy); line-height:1; font-variant-numeric:tabular-nums;}
+  .cnt .v .u{font-size:.5em; color:var(--teal); margin-left:1px;}
+  .cnt .k{font-size:12.5px; color:var(--soft); margin-top:9px; line-height:1.4;}
+  .counters2{display:flex; flex-wrap:wrap; gap:8px 26px; margin-top:16px; font-family:var(--mono); font-size:12.5px; color:var(--soft);}
+  .counters2 b{color:var(--ink); font-weight:650;}
+
+  /* arc */
+  .arc{margin-top:26px; border:1px solid var(--rule-strong); background:var(--panel-2); padding:22px 20px 12px;}
+  .arc svg{display:block; width:100%; height:auto;}
+  .arcpath{stroke-dasharray:1200; stroke-dashoffset:1200;}
+  .arcpath.draw{animation:draw 1.8s cubic-bezier(.3,.7,.2,1) forwards;}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .arcnodes circle, .arcnodes text{opacity:0;}
+  .arcnodes.show circle, .arcnodes.show text{opacity:1; transition:opacity .5s ease;}
+  .arccap{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:12px; font-family:var(--mono); font-size:11px; color:var(--soft);}
+  .arccap b{color:var(--navy);}
+
+  /* close */
+  .pull{background:var(--ink); color:#E8EBEE; padding:30px 32px; margin-top:90px;}
+  :root[data-theme="dark"] .pull{background:#0B1016;}
+  .pull p{font-family:var(--serif); font-size:clamp(18px,2.6vw,24px); line-height:1.44; color:#fff; max-width:none;}
+  .pull .ac{color:#5ED0B8;}
+  .pull .sign{font-family:var(--mono); font-size:12px; color:#9aa6b0; margin-top:16px; letter-spacing:.03em;}
+  footer{margin-top:24px; font-family:var(--mono); font-size:11px; color:var(--faint); line-height:1.7; border-top:1px solid var(--rule-strong); padding-top:16px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none;} .tline{opacity:1; transform:none;}
+    .cursor{animation:none;} .scrollcue .down{animation:none;}
+    .arcpath{stroke-dashoffset:0;} .arcnodes circle,.arcnodes text{opacity:1;}
+  }
+</style>
+
+<div class="wrap">
+
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle night mode">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+    <span class="lab">Night</span>
+  </button>
+
+  <header>
+    <div class="eyebrow reveal in">Aman Verma · Mobile Software Engineer · 2023 → 2026</div>
+    <h1 class="reveal in">From <span class="q">"does it run?"</span><br>to <span class="q">"does it scale?"</span></h1>
+    <p class="lede reveal in">Two and a half years, one health-tech app with 4M+ users, and a straight line from fixing crashes to building the systems that prevent them.</p>
+    <div class="byline reveal in">iOS (Swift) → Kotlin Multiplatform · from intern to feature lead</div>
+    <div class="scrollcue reveal in"><span class="down">↓</span> scroll to replay the story</div>
+  </header>
+
+  <!-- TERMINAL REPLAY -->
+  <section>
+    <div class="slabel reveal">01 · the log</div>
+    <h2 class="reveal">My career, replayed from the commit log</h2>
+    <p class="sintro reveal">Every year the work got harder and the structure got cleaner. Here's the whole arc, streamed.</p>
+    <div class="term reveal" id="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="ttl">zsh — career.log</span></div>
+      <div class="term-body" id="termBody">
+        <span class="cmd"><span class="pr">aman@mobile</span> ~ % <span id="typed"></span><span class="cursor" id="cursor"></span></span>
+        <div id="tout" style="margin-top:12px;">
+          <span class="tline"><span class="yr">2023</span> <span class="role">· intern→SDE</span>  <span class="pips">●</span>  <span class="txt">shared token manager + response interceptor — made shared state safe</span></span>
+          <span class="tline"><span class="yr">    </span> <span class="role">           </span>  <span class="pips">●</span>  <span class="txt">built a data-quality analytics framework · 150+ events standardized</span></span>
+          <span class="tline"><span class="yr">2024</span> <span class="role">· SDE      </span>  <span class="pips">●●</span>  <span class="txt">+38% personalization CTR · shipped to 4M+ users</span></span>
+          <span class="tline"><span class="yr">    </span> <span class="role">           </span>  <span class="pips">●●</span>  <span class="txt">AI hybrid module (WebKit + TypeScript bridge) · +50% in-app reach</span></span>
+          <span class="tline"><span class="yr">2025</span> <span class="role">· owner    </span>  <span class="pips">●●●</span>  <span class="txt">stepped onto Android — shipped the same surfaces in 10 days</span></span>
+          <span class="tline"><span class="yr">2026</span> <span class="role">· lead     </span>  <span class="pips">●●●●</span>  <span class="txt">KMM / Compose · in-app AI agent · automated crash-fix pipeline</span></span>
+          <span class="tline sum">──────────────────────────────────────────────</span>
+          <span class="tline sum"><b>2,000+</b> commits   <b>launch −15%</b>   <b>releases −10%</b>   crashes → a pipeline</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTERS -->
+  <section>
+    <div class="slabel reveal">02 · the impact</div>
+    <h2 class="reveal">The numbers behind it</h2>
+    <p class="sintro reveal">Measured outcomes, not activity — the signals a code review and a product both care about.</p>
+    <div class="counters reveal" id="counters">
+      <div class="cnt"><div class="v" data-to="4" data-suffix="M+">0</div><div class="k">users reached by features I shipped</div></div>
+      <div class="cnt"><div class="v" data-to="596">0</div><div class="k">commits in my first year alone</div></div>
+      <div class="cnt"><div class="v" data-to="38" data-prefix="+" data-suffix="%">0</div><div class="k">lift in personalization CTR</div></div>
+      <div class="cnt"><div class="v" data-to="15" data-prefix="−" data-suffix="%">0</div><div class="k">faster app launch time</div></div>
+    </div>
+    <div class="counters2 reveal">
+      <span><b>150+</b> tracking events standardized</span>
+      <span><b>15+</b> reusable UIKit components</span>
+      <span><b>2</b> native platforms</span>
+      <span><b>3.5</b> years</span>
+    </div>
+  </section>
+
+  <!-- ARC -->
+  <section>
+    <div class="slabel reveal">03 · the climb</div>
+    <h2 class="reveal">Craft and scope, rising every year</h2>
+    <p class="sintro reveal">The steepest climb was the first stretch — the intern-era lesson corrected fast, then compounded.</p>
+    <div class="arc reveal" id="arcBox">
+      <svg viewBox="0 0 860 300" role="img" aria-label="A line rising from 2023 intern to 2026 lead">
+        <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E8C78" stop-opacity=".16"/><stop offset="1" stop-color="#0E8C78" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="var(--rule)" stroke-width="1"><line x1="60" y1="40" x2="820" y2="40"/><line x1="60" y1="110" x2="820" y2="110"/><line x1="60" y1="180" x2="820" y2="180"/><line x1="60" y1="250" x2="820" y2="250"/></g>
+        <path d="M90 250 C 170 232,210 210,280 190 S 430 150,520 132 S 680 96,760 70 L760 252 L90 252 Z" fill="url(#ag)"/>
+        <path class="arcpath" id="arcPath" d="M90 250 C 170 232,210 210,280 190 S 430 150,520 132 S 680 96,760 70" fill="none" stroke="#0E8C78" stroke-width="3" stroke-linecap="round"/>
+        <g class="arcnodes" id="arcNodes" font-family="ui-monospace,Menlo,monospace" font-size="12" text-anchor="middle">
+          <circle cx="90"  cy="250" r="6" fill="#fff" stroke="#B2544A" stroke-width="2.4"/><text x="90"  y="278" fill="#8A939D">'23</text>
+          <circle cx="280" cy="190" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/><text x="280" y="278" fill="#8A939D">'24</text>
+          <circle cx="520" cy="132" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/><text x="520" y="278" fill="#8A939D">'25</text>
+          <circle cx="760" cy="70"  r="8.5" fill="#0E8C78" stroke="#fff" stroke-width="2.5"/><text x="760" y="54" fill="#0E8C78" font-weight="700">now</text>
+        </g>
+      </svg>
+      <div class="arccap"><span><b>'23</b> intern → made shared state safe</span><span><b>'24</b> feature owner</span><span><b>'25</b> cross-platform</span><span><b>'26</b> lead · platform &amp; tooling</span></div>
+    </div>
+  </section>
+
+  <div class="pull reveal">
+    <p>The category of my mistakes changed — and that's exactly what growth looks like. I <span class="ac">build the layer others stand on</span>, reach one rung past what I've proven, and <span class="ac">turn last year's worst bug into this year's best pattern</span>.</p>
+    <div class="sign">— Aman Verma · mobile engineer · iOS → Kotlin Multiplatform</div>
+  </div>
+
+  <footer>
+    A self-review grounded in my real commit history (2023 → 2026) and shipped work. Metrics are measured outcomes; some figures are paraphrased and internal names omitted. Built as a motion piece — scroll to replay.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var STATIC = new URLSearchParams(location.search).has('static');
+
+  // theme toggle
+  var btn=document.getElementById('themeToggle');
+  if(btn){ var lab=btn.querySelector('.lab'); btn.addEventListener('click',function(){
+    if(root.getAttribute('data-theme')==='dark'){root.removeAttribute('data-theme'); lab.textContent='Night';}
+    else{root.setAttribute('data-theme','dark'); lab.textContent='Day';}
+  });}
+
+  function fmt(v,p,s){ return (p||'')+v+(s||''); }
+
+  // counters
+  function runCounters(box){
+    box.querySelectorAll('.v').forEach(function(el){
+      var to=parseFloat(el.getAttribute('data-to')), pre=el.getAttribute('data-prefix'), suf=el.getAttribute('data-suffix');
+      if(reduce||STATIC){ el.innerHTML=fmt(to,pre,suf?('<span class="u">'+suf+'</span>'):''); return; }
+      var start=null, dur=1200;
+      function step(ts){ if(!start)start=ts; var t=Math.min((ts-start)/dur,1); var e=1-Math.pow(1-t,3);
+        var cur=Math.round(to*e); el.innerHTML=fmt(cur,pre,suf?('<span class="u">'+suf+'</span>'):'');
+        if(t<1)requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // terminal typing
+  var CMD='git log --author=aman.verma --story';
+  function runTerminal(){
+    var typed=document.getElementById('typed'), cursor=document.getElementById('cursor');
+    var lines=document.querySelectorAll('#tout .tline');
+    function showLines(delay){ lines.forEach(function(l,i){ setTimeout(function(){l.classList.add('show');}, delay + i*230); }); }
+    if(reduce||STATIC){ typed.textContent=CMD; lines.forEach(function(l){l.classList.add('show');}); if(cursor&&STATIC)cursor.style.display='none'; return; }
+    var i=0;
+    (function type(){ if(i<=CMD.length){ typed.textContent=CMD.slice(0,i); i++; setTimeout(type, 34); }
+      else { setTimeout(function(){ showLines(120); }, 260); } })();
+  }
+
+  // arc
+  function runArc(){ var p=document.getElementById('arcPath'), n=document.getElementById('arcNodes');
+    if(reduce||STATIC){ p.style.strokeDashoffset='0'; n.classList.add('show'); return; }
+    p.classList.add('draw'); setTimeout(function(){ n.classList.add('show'); }, 900);
+  }
+
+  // reveal + triggers via IntersectionObserver
+  var fired={};
+  if(STATIC){
+    document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});
+    runTerminal(); runCounters(document.getElementById('counters')); runArc();
+  } else if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});
+    runTerminal(); runCounters(document.getElementById('counters')); runArc();
+  } else {
+    var io=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(!en.isIntersecting)return;
+      var el=en.target; el.classList.add('in');
+      if(el.id==='term' && !fired.term){fired.term=1; runTerminal();}
+      if(el.id==='counters' && !fired.counters){fired.counters=1; runCounters(el);}
+      if(el.id==='arcBox' && !fired.arc){fired.arc=1; runArc();}
+      io.unobserve(el);
+    }); }, {threshold:0.3});
+    document.querySelectorAll('.reveal').forEach(function(e){ if(e.classList.contains('in'))return; io.observe(e); });
+    ['term','counters','arcBox'].forEach(function(id){ var el=document.getElementById(id); if(el)io.observe(el); });
+  }
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,1569 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>Aman — Engineering Growth</title>
+<style>
+  :root{
+    --paper:#ECEEF1; --panel:#F7F8FA; --panel-2:#FFFFFF;
+    --ink:#121820; --soft:#56606B; --faint:#8A939D;
+    --rule:#D4D9DF; --rule-strong:#B4BBC3;
+    --navy:#15508C; --navy-deep:#0E3A66; --navy-soft:#E1E9F2;
+    --teal:#0E8C78; --teal-soft:#DCF0EC;
+    --amber:#B8791A;
+    --crit:#B2544A;
+    --good:#15924F; --good-soft:#E3F5EA;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,sans-serif;
+    --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+    background-size:30px 30px; background-position:-1px -1px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 26px 110px;}
+  h1,h2,h3{font-family:var(--serif); font-weight:700; line-height:1.12; text-wrap:balance; margin:0;}
+  p{margin:0; max-width:68ch;}
+  .mono{font-family:var(--mono);}
+
+  /* ---------- hero ---------- */
+  header{margin-top:52px; padding-bottom:30px; border-bottom:3px solid var(--ink);}
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); font-weight:600;}
+  h1{font-size:clamp(34px,6.4vw,60px); letter-spacing:-.02em; margin:16px 0 0;}
+  h1 .q{color:var(--navy); font-style:italic;}
+  .lede{font-family:var(--serif); font-size:clamp(17px,2.4vw,21px); font-style:italic; color:var(--ink); max-width:60ch; margin:18px 0 0; line-height:1.46; border-left:4px solid var(--teal); padding-left:20px;}
+  .byline{font-family:var(--mono); font-size:12.5px; color:var(--soft); margin:22px 0 0; display:flex; flex-wrap:wrap; gap:6px 22px;}
+  .byline b{color:var(--ink); font-weight:600;}
+
+  .hero-art{margin:26px 0 0; border:1px solid var(--rule-strong); background:var(--panel-2);}
+  .hero-art svg{display:block; width:100%; height:auto;}
+
+  /* ---------- section scaffolding ---------- */
+  section{margin-top:76px;}
+  .shead{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--rule-strong); padding-bottom:10px; margin-bottom:24px;}
+  .snum{font-family:var(--mono); font-size:12px; color:var(--teal); font-weight:600; white-space:nowrap;}
+  h2{font-size:clamp(22px,3.4vw,30px); letter-spacing:-.015em;}
+  .lead{color:var(--soft); max-width:66ch; margin-top:12px;}
+
+  /* ---------- arc chart ---------- */
+  .chart{border:1px solid var(--rule-strong); background:var(--panel-2); padding:24px 22px 14px;}
+  .chart svg{display:block; width:100%; height:auto;}
+  .milestones{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:4px;}
+  @media(max-width:620px){.milestones{grid-template-columns:1fr 1fr; gap:14px;}}
+  .ms .yr{font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; color:var(--navy); font-weight:600;}
+  .ms .nm{font-weight:650; font-size:13.5px; margin:2px 0 1px;}
+  .ms .ds{font-size:12px; color:var(--soft); line-height:1.4;}
+  .ms.now .yr{color:var(--teal);}
+
+  /* ---------- before / after story ---------- */
+  .story{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule-strong); border:1px solid var(--rule-strong);}
+  @media(max-width:620px){.story{grid-template-columns:1fr;}}
+  .pane{background:var(--panel); padding:20px 22px;}
+  .pane .tag{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:600;}
+  .pane.before .tag{color:var(--crit);} .pane.after .tag{color:var(--teal);}
+  .pane h3{font-size:17px; margin:7px 0 10px;}
+  .pane svg{display:block; width:100%; height:auto; margin-bottom:12px;}
+  .pane p{font-size:13.5px; color:var(--soft); line-height:1.5;}
+  .pane code{font-family:var(--mono); font-size:12px; background:var(--panel-2); border:1px solid var(--rule); padding:1px 6px; color:var(--ink);}
+  .story-note{font-family:var(--serif); font-style:italic; font-size:clamp(16px,2.2vw,19px); color:var(--ink); border-left:4px solid var(--navy); padding-left:20px; margin-top:20px; line-height:1.5; max-width:62ch;}
+
+  /* ---------- strengths ---------- */
+  .str{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:640px){.str{grid-template-columns:1fr;}}
+  .scard{border:1px solid var(--rule-strong); background:var(--panel); padding:18px 20px; position:relative;}
+  .scard.sig{border-color:var(--teal); background:var(--teal-soft);}
+  .scard .ic{width:30px; height:30px; margin-bottom:10px;}
+  .scard h3{font-size:16.5px; letter-spacing:-.01em;}
+  .scard .sig-lab{position:absolute; top:16px; right:18px; font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); font-weight:600;}
+  .scard p{font-size:13px; color:var(--soft); margin-top:6px; line-height:1.5;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+  .chip{font-family:var(--mono); font-size:10.5px; color:var(--navy-deep); background:var(--navy-soft); padding:3px 8px; border-radius:3px; white-space:nowrap;}
+  .scard.sig .chip{background:#CDEAE2; color:#0a5a4c;}
+
+  .growth{border:1px dashed var(--rule-strong); background:var(--panel-2); padding:16px 20px; margin-top:16px;}
+  .growth .l{font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--amber); font-weight:600;}
+  .growth p{font-size:13.5px; color:var(--soft); margin-top:6px;}
+  .growth p b{color:var(--ink);}
+
+  /* ---------- numbers ---------- */
+  .nums{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:640px){.nums{grid-template-columns:1fr;}}
+  .ncard{border:1px solid var(--rule-strong); background:var(--panel-2); padding:18px 20px;}
+  .ncard .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--soft);}
+  .trans{display:flex; align-items:baseline; gap:10px; margin:9px 0 12px; flex-wrap:wrap;}
+  .trans .was{font-family:var(--mono); font-size:13px; color:var(--crit); text-decoration:line-through; text-decoration-color:rgba(178,84,74,.5);}
+  .trans .arw{color:var(--faint);}
+  .trans .is{font-family:var(--serif); font-size:23px; font-weight:700; color:var(--teal); letter-spacing:-.01em; line-height:1;}
+  .nbar{height:7px; background:var(--rule); overflow:hidden; border-radius:3px;}
+  .nbar > i{display:block; height:100%; background:var(--teal); border-radius:3px;}
+
+  /* ---------- current work ---------- */
+  .now-card{border:1px solid var(--rule-strong); background:var(--panel); display:grid; grid-template-columns:260px 1fr; gap:0;}
+  @media(max-width:680px){.now-card{grid-template-columns:1fr;}}
+  .now-art{background:var(--navy-deep); padding:22px; display:flex; align-items:center; justify-content:center;}
+  .now-art svg{display:block; width:100%; height:auto;}
+  .now-body{padding:20px 24px;}
+  .now-body .tag{font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--teal); font-weight:600;}
+  .now-body h3{font-size:21px; margin:8px 0 4px;}
+  .now-body .meta{font-family:var(--mono); font-size:12px; color:var(--soft); margin-bottom:12px;}
+  .now-body p{font-size:13.5px; color:var(--soft); line-height:1.55;}
+  .now-stats{display:flex; flex-wrap:wrap; gap:6px 20px; margin-top:14px; font-family:var(--mono); font-size:12px; color:var(--soft);}
+  .now-stats b{color:var(--ink); font-weight:650;}
+
+  /* ---------- close ---------- */
+  .pull{background:var(--ink); color:#E8EBEE; padding:30px 32px; margin-top:76px;}
+  .pull p{font-family:var(--serif); font-size:clamp(18px,2.6vw,24px); line-height:1.44; color:#fff; max-width:none;}
+  .pull .ac{color:#5ED0B8;}
+  .pull .sign{font-family:var(--mono); font-size:12px; color:#9aa6b0; margin-top:16px; letter-spacing:.03em;}
+
+  .verified{display:flex; align-items:center; gap:14px; margin-top:76px; padding:16px 20px; border:1px solid var(--teal); background:var(--teal-soft);}
+  .verified svg{flex:none; width:26px; height:26px;}
+  .verified .vt{font-family:var(--mono); font-size:12px; color:#0a5a4c; line-height:1.55;}
+  .verified .vt b{font-weight:700; letter-spacing:.02em;}
+
+  footer{margin-top:22px; font-family:var(--mono); font-size:11px; color:var(--faint); line-height:1.7; border-top:1px solid var(--rule-strong); padding-top:16px;}
+
+  /* ---------- judgment arc (clickable / expandable) ---------- */
+  .jarc{margin-top:22px;}
+  .phase{position:relative;}
+  .phase > summary{list-style:none; cursor:pointer; display:flex; align-items:baseline; gap:10px 12px; flex-wrap:wrap; padding:14px 18px; background:var(--panel-2); border:1px solid var(--rule-strong); border-left:3px solid var(--navy); margin-bottom:14px;}
+  .phase.now > summary{border-left-color:var(--teal);}
+  .phase[open] > summary{margin-bottom:0; border-bottom:1px solid var(--rule);}
+  .phase > summary::-webkit-details-marker{display:none;}
+  .phase > summary:hover{background:var(--panel-2);}
+  .phase > summary:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .phase .when{font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--navy); font-weight:600; white-space:nowrap;}
+  .phase.now .when{color:var(--teal);}
+  .phase .ptitle{font-family:var(--serif); font-weight:700; font-size:16.5px; letter-spacing:-.01em;}
+  .phase .self-tag{font-family:var(--mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--amber); border:1px solid #d8c48a; padding:1px 6px; border-radius:3px;}
+  .phase .plus{margin-left:auto; font-family:var(--mono); font-size:18px; color:var(--faint); line-height:1;}
+  .phase .plus::after{content:"\2212";}
+  .phase:not([open]) .plus::after{content:"+";}
+  .phase .pbody{padding:6px 18px 18px; margin:0 0 14px; border:1px solid var(--rule-strong); border-top:none; border-left:3px solid var(--navy); background:var(--panel-2);}
+  .phase.now .pbody{border-left-color:var(--teal);}
+  .phase .pbody p{font-size:13.5px; color:var(--soft); line-height:1.55;}
+  .phase .pbody p b{color:var(--ink);} .phase .pbody code{font-family:var(--mono); font-size:12px; background:var(--panel-2); border:1px solid var(--rule); padding:0 5px; color:var(--ink);}
+  .commits{margin-top:12px; border-top:1px dashed var(--rule-strong); padding-top:10px;}
+  .commits .cl{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-bottom:7px;}
+  .commits .cm{display:block; font-family:var(--mono); font-size:11.5px; color:var(--ink); margin-bottom:5px; white-space:pre-wrap; word-break:break-word; line-height:1.4;}
+  .commits .cm .h{color:var(--navy);}
+
+  /* ---------- crash evolution ---------- */
+  .crashflow{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:22px; border:1px solid var(--rule-strong);}
+  @media(max-width:640px){.crashflow{grid-template-columns:1fr;}}
+  .cstep{padding:18px 20px; background:var(--panel); border-right:1px solid var(--rule-strong);}
+  .cstep:last-child{border-right:none;}
+  @media(max-width:640px){.cstep{border-right:none; border-bottom:1px solid var(--rule-strong);} .cstep:last-child{border-bottom:none;}}
+  .cstep.now{background:var(--teal-soft);}
+  .cstage{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--navy); font-weight:600;}
+  .cstep.now .cstage{color:var(--teal);}
+  .cstep h4{font-family:var(--serif); font-size:15.5px; font-weight:700; margin:7px 0 5px; letter-spacing:-.01em;}
+  .cstep p{font-size:12.5px; color:var(--soft); line-height:1.5; margin:0;}
+  .cstep .cc{font-family:var(--mono); font-size:11px; color:var(--ink); margin-top:10px; padding-top:9px; border-top:1px dashed var(--rule-strong); line-height:1.6;}
+  .cstep .cc .h{color:var(--navy);} .cstep.now .cc .h{color:var(--teal);}
+
+  /* ---------- stack ledger ---------- */
+  .stack{margin-top:22px; border:1px solid var(--rule-strong); background:var(--panel-2);}
+  .srow{display:grid; grid-template-columns:150px 1fr 1fr; gap:18px; padding:12px 20px; border-bottom:1px solid var(--rule); align-items:baseline;}
+  .srow:last-child{border-bottom:none;}
+  .srow.head{background:var(--panel); border-bottom:1px solid var(--rule-strong);}
+  .srow.head .sh{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:600;}
+  .srow.head .sh.ios{color:var(--navy);} .srow.head .sh.kmm{color:var(--teal);}
+  .scat{font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--soft); text-transform:uppercase;}
+  .sval{font-size:13.5px; color:var(--ink); line-height:1.45;}
+  .sval.k{color:#0a5a4c;}
+  @media(max-width:640px){
+    .srow{grid-template-columns:1fr 1fr; gap:4px 14px; padding:12px 16px;}
+    .scat{grid-column:1/-1; margin-bottom:2px;}
+    .srow.head .sh.cat{display:none;}
+  }
+
+  /* ---------- where I'm heading ---------- */
+  .explore{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px;}
+  @media(max-width:640px){.explore{grid-template-columns:1fr;}}
+  .efocus{border:1px solid var(--rule-strong); background:var(--panel); padding:16px 18px; border-left:3px solid var(--teal);}
+  .efocus h4{font-family:var(--serif); font-size:16px; font-weight:700; margin:0 0 5px; letter-spacing:-.01em;}
+  .efocus p{font-size:12.5px; color:var(--soft); line-height:1.5; margin:0;}
+
+  /* ---------- signature patterns ---------- */
+  .patterns{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px;}
+  @media(max-width:640px){.patterns{grid-template-columns:1fr;}}
+  .pat{border:1px solid var(--rule-strong); background:var(--panel); padding:16px 18px;}
+  .pat .pn{display:flex; align-items:baseline; gap:10px;}
+  .pat h4{font-family:var(--serif); font-size:16px; font-weight:700; letter-spacing:-.01em; margin:0;}
+  .pat .since{margin-left:auto; font-family:var(--mono); font-size:9px; letter-spacing:.05em; text-transform:uppercase; color:var(--teal); white-space:nowrap;}
+  .pat p{font-size:12.5px; color:var(--soft); line-height:1.5; margin:7px 0 10px;}
+
+  /* ---------- night mode toggle ---------- */
+  .theme-toggle{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--soft); background:var(--panel-2); border:1px solid var(--rule-strong); padding:6px 11px; cursor:pointer;}
+  .theme-toggle:hover{color:var(--ink); border-color:var(--navy);}
+  .theme-toggle:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .theme-toggle .ico{width:14px; height:14px;}
+
+  :root[data-theme="dark"]{
+    --paper:#11161D; --panel:#1A212B; --panel-2:#212A36;
+    --ink:#E9EDF2; --soft:#A7B2BF; --faint:#6B7784;
+    --rule:#283039; --rule-strong:#3A4654;
+    --navy:#6AA6E0; --navy-deep:#3A6EA8; --navy-soft:#1E2B3B;
+    --teal:#3FC3A8; --teal-soft:#16302B;
+    --amber:#D8A044; --crit:#DB8077;
+    --good:#45D98A; --good-soft:#143026;
+  }
+  :root[data-theme="dark"] .pull{background:#0B1016;}
+  :root[data-theme="dark"] .now-art{background:#16202E;}
+  :root[data-theme="dark"] .verified .vt{color:#9EE7D4;}
+  :root[data-theme="dark"] .sval.k{color:#6FD9C0;}
+  :root[data-theme="dark"] .chip{background:#1E2B3B; color:#A8CBEC;}
+  :root[data-theme="dark"] .scard.sig .chip{background:#1C3A34; color:#8FE0CC;}
+
+  /* ---------- scroll reveal + terminal replay ---------- */
+  .reveal{opacity:0; transform:translateY(20px);}
+  .reveal.in{opacity:1; transform:none; transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+  .term-wrap{margin-top:84px;}
+  .term-wrap .tlabel{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-bottom:12px;}
+  .term-wrap h2{font-size:clamp(22px,3.4vw,30px); letter-spacing:-.015em;}
+  .term-wrap .tintro{color:var(--soft); max-width:64ch; margin-top:12px;}
+  .term{margin-top:24px; background:#0E1620; border:1px solid #223041; border-radius:8px; overflow:hidden; box-shadow:0 18px 50px -24px rgba(8,16,24,.5);}
+  .term-bar{display:flex; align-items:center; gap:8px; padding:11px 14px; background:#121D28; border-bottom:1px solid #223041;}
+  .term-bar .dot{width:11px; height:11px; border-radius:50%;}
+  .term-bar .r{background:#E06C60} .term-bar .y{background:#E0B24A} .term-bar .g{background:#4FB974}
+  .term-bar .ttl{margin-left:auto; font-family:var(--mono); font-size:11px; color:#5E7585; letter-spacing:.03em;}
+  .tmode{display:inline-flex; gap:5px;}
+  .tm{font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--soft); background:transparent; border:1px solid var(--rule-strong); border-radius:4px; padding:3px 10px; cursor:pointer;}
+  .tm:hover{color:var(--ink); border-color:var(--navy);}
+  .tm.on{color:#fff; background:var(--teal); border-color:var(--teal); font-weight:700;}
+  .tm:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .topbar{position:sticky; top:0; z-index:60; background:rgba(236,238,241,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--rule-strong);}
+  :root[data-theme="dark"] .topbar{background:rgba(17,22,29,.92);}
+  .tb-in{max-width:1040px; margin:0 auto; padding:9px 24px; display:flex; align-items:center; gap:10px 14px; flex-wrap:wrap;}
+  .tb-brand{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); font-weight:700;}
+  .tb-ctl{margin-left:auto; display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap;}
+  .tb-ctl .mlabel{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint);}
+  .pmode{display:inline-flex; gap:5px;}
+  .pm{font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--soft); background:transparent; border:1px solid var(--rule-strong); border-radius:4px; padding:3px 12px; cursor:pointer;}
+  .pm:hover{color:var(--ink); border-color:var(--navy);}
+  .pm.on{color:#fff; background:var(--navy); border-color:var(--navy); font-weight:700;}
+  .pm:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .term-bar .tmode{display:inline-flex; gap:4px; margin-left:10px;}
+  .term-bar .tm{color:#5E7585; border-color:#2A3B4D;}
+  .term-bar .tm:hover{color:#AEC4C0; border-color:#3A5468;}
+  .term-bar .tm.on{color:#0E1620; background:#4Fd1b5; border-color:#4Fd1b5;}
+  .tctl{display:inline-flex; gap:4px; margin-left:12px;}
+  .tbtn{font-family:var(--mono); font-size:11px; line-height:1; color:#5E7585; background:transparent; border:1px solid #2A3B4D; border-radius:4px; padding:4px 7px; cursor:pointer; min-width:26px; text-align:center;}
+  .tbtn:hover{color:#AEC4C0; border-color:#3A5468;}
+  .tbtn:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .tbtn.playing{color:#0E1620; background:#4Fd1b5; border-color:#4Fd1b5;}
+  /* two presentation modes */
+  body.mode-terminal .wrap > section:not(.term-wrap){display:none;}
+  body.mode-terminal .wrap > .pull{display:none;}
+  body.mode-scroll .term-wrap{display:none;}
+  body.mode-scroll .wrap > section{
+    opacity:0; transform:translateY(36px) scale(.965); filter:blur(3px);
+    will-change:opacity, transform, filter;
+  }
+  /* fallback (no requestAnimationFrame / JS off): plain fade-in */
+  body.mode-scroll .wrap > section.in{opacity:1; transform:none; filter:none;
+    transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1), filter .6s cubic-bezier(.2,.7,.2,1);}
+  @media (prefers-reduced-motion: reduce){ body.mode-scroll .wrap > section{opacity:1 !important; transform:none !important; filter:none !important;} }
+  .term-body{padding:18px 20px 22px; font-family:var(--mono); font-size:13.5px; line-height:1.7; color:#D6E2E0; min-height:360px;}
+  @media(max-width:560px){.term-body{font-size:11.5px; padding:14px; min-height:340px;}}
+  .term-body .cmd{color:#fff;} .term-body .cmd .pr{color:#4Fd1b5;}
+  .cursor{display:inline-block; width:8px; height:1.05em; background:#4Fd1b5; vertical-align:-2px; margin-left:2px; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0}}
+  .tline{opacity:0; transform:translateY(5px); display:block; white-space:pre-wrap; word-break:break-word;}
+  .tline.show{opacity:1; transform:none; transition:opacity .28s ease, transform .28s ease;}
+  .tline .yr{color:#E0A94A;} .tline .role{color:#6D8A86;} .tline .pips{color:#4Fd1b5; letter-spacing:1px;} .tline .txt{color:#D6E2E0;}
+  .tline.sum{color:#4Fd1b5; margin-top:6px;} .tline.sum b{color:#fff; font-weight:700;}
+  .tline .qq{color:#E0A94A; font-weight:700; margin-right:8px;} .tline .aa{color:#4Fd1b5; font-weight:700; margin-right:8px;}
+  /* tacky dev quip at the bottom of each view */
+  .tline.quip{color:#5E7585; font-style:italic; margin-top:16px;}
+  .tline.quip .c{color:#4Fd1b5; font-style:normal; margin-right:2px;}
+  /* scorecard · star ratings */
+  #scoreView .score-head b{color:#fff;}
+  #scoreView .score-head .ov{color:var(--good); font-weight:700; font-size:15px; background:rgba(69,217,138,.13); padding:1px 8px; border-radius:5px;}
+  #scoreView .score-head .of{color:#5E7585;}
+  #scoreView .score-head{color:#4Fd1b5;}
+  #scoreView .blk{color:#4Fd1b5;}
+  #scoreView .srow{display:grid; grid-template-columns:minmax(140px,1fr) auto 40px; align-items:center; gap:14px; margin:1px 0;}
+  #scoreView .slab{color:#C3D0CE;}
+  #scoreView .snum{color:#E0A94A; font-weight:700; text-align:right; font-variant-numeric:tabular-nums;}
+  .sbar{position:relative; display:inline-block;}
+  .stars{position:relative; display:inline-block; font-size:14px; line-height:1; letter-spacing:3px; white-space:nowrap;}
+  .stars::before{content:"★★★★★"; color:#2E3F4D;}
+  .stars > span{position:absolute; left:0; top:0; overflow:hidden; white-space:nowrap; color:#E0A94A;}
+  .stars > span::before{content:"★★★★★";}
+  .sbar .bl{position:absolute; top:-3px; bottom:-3px; left:70%; width:1px; background:#4Fd1b5; opacity:.55;}
+  @media(max-width:560px){ #scoreView .srow{grid-template-columns:1fr auto 34px; gap:9px;} .stars{letter-spacing:2px; font-size:13px;} }
+  /* scorecard · scroll-mode section (themed) */
+  .scorecard{margin-top:22px; background:var(--panel-2); border:1px solid var(--rule); border-radius:12px; padding:22px 24px; box-shadow:0 20px 50px -34px rgba(8,16,24,.3);}
+  .sc-top{display:flex; align-items:center; gap:16px; flex-wrap:wrap; border-bottom:1px solid var(--rule); padding-bottom:16px; margin-bottom:18px;}
+  .sc-ov{font-family:var(--mono); font-size:38px; font-weight:800; line-height:1; color:var(--good); font-variant-numeric:tabular-nums; display:inline-flex; align-items:center; gap:8px; background:var(--good-soft); border:1px solid color-mix(in srgb, var(--good) 35%, transparent); padding:8px 16px; border-radius:12px;}
+  .sc-ov .chk{font-size:22px; line-height:1;}
+  .sc-ov .den{font-size:16px; color:var(--good); opacity:.6; font-weight:600; align-self:flex-end; margin-bottom:5px;}
+  .sc-pass{color:var(--good) !important; font-weight:700;}
+  .sc-tag{display:flex; flex-direction:column; gap:3px;}
+  .sc-tag b{font-size:15px; color:var(--ink);}
+  .sc-tag span{font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--faint);}
+  .sc-base{margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--teal); display:inline-flex; align-items:center; gap:7px;}
+  .sc-base i{display:inline-block; width:1px; height:14px; background:var(--teal);}
+  .sc-rows{display:grid; gap:12px;}
+  .sc-r{display:grid; grid-template-columns:minmax(150px,1.1fr) auto 44px; align-items:center; gap:18px;}
+  .sc-r .lab{color:var(--soft); font-size:14px;}
+  .sc-r .val{font-family:var(--mono); font-weight:700; color:var(--amber); text-align:right; font-variant-numeric:tabular-nums;}
+  .sc-note{margin-top:18px; padding-top:14px; border-top:1px solid var(--rule); color:var(--soft); font-size:14px;}
+  .scorecard .stars{font-size:17px; letter-spacing:4px;}
+  .scorecard .stars::before{color:var(--rule-strong);}
+  .scorecard .stars > span{color:var(--amber);}
+  .scorecard .sbar .bl{background:var(--teal); top:-2px; bottom:-2px; opacity:.6;}
+  @media(max-width:560px){ .sc-r{grid-template-columns:1fr auto 40px; gap:11px;} .scorecard{padding:18px;} .scorecard .stars{font-size:15px; letter-spacing:3px;} .sc-ov{font-size:32px;} }
+  /* scorecard · radar ("star") chart — shared by terminal + scroll */
+  .radar-host{display:block;}
+  .radar{display:block; width:100%; max-width:440px; margin:12px auto 4px; height:auto; overflow:visible;}
+  .rad-grid{fill:none; stroke:var(--rule); stroke-width:1; opacity:.6;}
+  .rad-axis{stroke:var(--rule); stroke-width:1; opacity:.5;}
+  .rad-base{fill:none; stroke:var(--amber); stroke-width:1.5; stroke-dasharray:4 3; opacity:.9;}
+  .rad-poly{fill:var(--teal); fill-opacity:.2; stroke:var(--teal); stroke-width:2; stroke-linejoin:round;}
+  .rad-dot{fill:var(--teal);}
+  .rad-label{fill:var(--soft); font-family:var(--mono); font-size:10px;}
+  .rad-val{fill:var(--amber); font-weight:700;}
+  .rad-scale{fill:var(--faint); font-family:var(--mono); font-size:8px;}
+  .sc-legend{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:8px; font-family:var(--mono); font-size:10.5px; color:var(--faint);}
+  .sc-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .sc-legend .lg::before{content:""; width:14px; height:0; border-top:3px solid var(--rule-strong); border-radius:2px;}
+  .sc-legend .lg.data::before{border-top-color:var(--teal);}
+  .sc-legend .lg.base::before{border-top:2px dashed var(--amber);}
+  .sc-legend .lg.ring::before{border-top-color:var(--rule);}
+  /* terminal (dark) radar palette */
+  #scoreView .rad-grid, #scoreView .rad-axis{stroke:#2A3B4D;}
+  #scoreView .rad-poly{fill:#4Fd1b5; fill-opacity:.2; stroke:#4Fd1b5;}
+  #scoreView .rad-dot{fill:#4Fd1b5;}
+  #scoreView .rad-base{stroke:#E0A94A;}
+  #scoreView .rad-label{fill:#AEC4C0;}
+  #scoreView .rad-val{fill:#E0A94A;}
+  #scoreView .rad-scale{fill:#5E7585;}
+  #scoreView .radar{max-width:360px; margin-top:6px;}
+  /* end-of-scroll reward card */
+  .endcard{position:relative; text-align:center; padding:84px 24px 48px; overflow:hidden;}
+  .endcard .confetti{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0;}
+  .end-in{position:relative; z-index:1; max-width:640px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .endcard .eb{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--good); font-weight:700;}
+  .endcard h2{font-size:clamp(26px,4.4vw,42px); letter-spacing:-.02em; line-height:1.08; text-wrap:balance;}
+  .endcard p{color:var(--soft); max-width:56ch; margin:0;}
+  .end-cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:4px;}
+  .ec{font-family:var(--mono); font-size:12.5px; letter-spacing:.03em; text-decoration:none; padding:11px 20px; border-radius:8px; border:1px solid var(--rule-strong); color:var(--ink); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;}
+  .ec:hover{transform:translateY(-2px); box-shadow:0 10px 24px -12px rgba(8,16,24,.4);}
+  .ec.primary{background:var(--good); border-color:var(--good); color:#fff;}
+  .ec:focus-visible{outline:2px solid var(--navy); outline-offset:2px;}
+  .end-quote{margin-top:14px; font-family:var(--serif); font-style:italic; font-size:16px; color:var(--soft); display:flex; flex-direction:column; gap:7px; max-width:52ch;}
+  .end-quote span{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--faint); letter-spacing:.05em;}
+  /* staggered pop-in when the card fires */
+  .endcard .end-in > *{opacity:0; transform:translateY(18px) scale(.96);}
+  .endcard.fire .end-in > *{opacity:1; transform:none; transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1);}
+  .endcard.fire .end-in > *:nth-child(1){transition-delay:.00s}
+  .endcard.fire .end-in > *:nth-child(2){transition-delay:.10s}
+  .endcard.fire .end-in > *:nth-child(3){transition-delay:.20s}
+  .endcard.fire .end-in > *:nth-child(4){transition-delay:.32s}
+  .endcard.fire .end-in > *:nth-child(5){transition-delay:.46s}
+  .endcard.fire h2{animation:endpop .6s cubic-bezier(.2,1.5,.4,1) .10s both;}
+  @keyframes endpop{0%{letter-spacing:.06em}60%{letter-spacing:-.03em}100%{letter-spacing:-.02em}}
+  @media (prefers-reduced-motion: reduce){ .endcard .end-in > *{opacity:1 !important; transform:none !important;} .endcard.fire h2{animation:none;} }
+  @media(max-width:560px){ .endcard{padding:60px 18px 40px;} }
+  /* ===== extra scroll-mode choreography ===== */
+  /* scroll-progress bar on the topbar */
+  .scrollprog{position:absolute; left:0; right:0; bottom:-1px; height:2px; pointer-events:none;}
+  .scrollprog i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--teal),var(--good)); box-shadow:0 0 8px rgba(63,195,168,.55); transition:width .1s linear;}
+  body.mode-terminal .scrollprog{opacity:0;}
+  /* section-header reveal: number pops, title slides, underline draws */
+  body.mode-scroll .shead{position:relative;}
+  body.mode-scroll .shead .snum{display:inline-block; opacity:0; transform:translateY(10px);}
+  body.mode-scroll .shead h2{opacity:0; transform:translateX(-12px);}
+  body.mode-scroll section.seen .shead .snum{opacity:1; transform:none; transition:opacity .5s ease .04s, transform .55s cubic-bezier(.2,.9,.3,1) .04s;}
+  body.mode-scroll section.seen .shead h2{opacity:1; transform:none; transition:opacity .55s ease .12s, transform .55s cubic-bezier(.2,.9,.3,1) .12s;}
+  body.mode-scroll .shead::after{content:""; position:absolute; left:0; bottom:-1px; height:2px; width:100%; background:var(--teal); transform:scaleX(0); transform-origin:left;}
+  body.mode-scroll section.seen .shead::after{transform:scaleX(1); transition:transform .75s cubic-bezier(.2,.8,.2,1) .18s;}
+  /* staggered reveal for card grids */
+  body.mode-scroll .stwrap > *{opacity:0; transform:translateY(24px);}
+  body.mode-scroll section.seen .stwrap > *{opacity:1; transform:none; transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1);}
+  body.mode-scroll section.seen .stwrap > *:nth-child(1){transition-delay:.06s}
+  body.mode-scroll section.seen .stwrap > *:nth-child(2){transition-delay:.14s}
+  body.mode-scroll section.seen .stwrap > *:nth-child(3){transition-delay:.22s}
+  body.mode-scroll section.seen .stwrap > *:nth-child(4){transition-delay:.30s}
+  body.mode-scroll section.seen .stwrap > *:nth-child(5){transition-delay:.38s}
+  body.mode-scroll section.seen .stwrap > *:nth-child(6){transition-delay:.46s}
+  body.mode-scroll section.seen .stwrap > *:nth-child(n+7){transition-delay:.54s}
+  /* metric bars grow when their section is seen */
+  body.mode-scroll .nbar{overflow:hidden;}
+  body.mode-scroll .nbar > i{transform:scaleX(0); transform-origin:left; animation:none;}
+  body.mode-scroll section.seen .nbar > i{transform:scaleX(1); transition:transform .9s cubic-bezier(.2,.8,.2,1) .34s;}
+  @media (prefers-reduced-motion: reduce){
+    body.mode-scroll .shead .snum, body.mode-scroll .shead h2, body.mode-scroll .stwrap > *{opacity:1 !important; transform:none !important;}
+    body.mode-scroll .shead::after{transform:scaleX(1) !important;}
+    body.mode-scroll .nbar > i{transform:none !important;}
+  }
+  /* ===== interactive terminal prompt ===== */
+  .term-out{font-family:var(--mono); font-size:13.5px; line-height:1.7; color:#AEC4C0; white-space:pre-wrap; word-break:break-word; margin-top:12px;}
+  .term-out > div{margin:2px 0;}
+  .term-out .ok{color:#4Fd1b5;} .term-out .warn{color:#E0A94A;} .term-out .err{color:#E06C60;} .term-out .dim{color:#5E7585;} .term-out b{color:#fff;}
+  .term-prompt{display:flex; align-items:center; margin-top:10px; cursor:text; font-family:var(--mono); font-size:13.5px; color:#fff; white-space:nowrap;}
+  .term-prompt .pr{color:#4Fd1b5; margin-right:6px;}
+  .term-input{flex:1; min-width:0; background:transparent; border:0; outline:none; color:#fff; font-family:var(--mono); font-size:13.5px; caret-color:#4Fd1b5; padding:2px 0 2px 6px;}
+  .term-input::placeholder{color:#5E7585;}
+  @media(max-width:560px){ .term-out,.term-prompt,.term-input{font-size:11.5px;} }
+  /* ===== section-aware topbar label ===== */
+  .tb-sec{font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); padding-left:10px; border-left:1px solid var(--rule-strong); opacity:0; transform:translateY(-3px); transition:opacity .35s ease, transform .35s ease; white-space:nowrap; max-width:0; overflow:hidden;}
+  .tb-sec.show{opacity:1; transform:none; max-width:320px;}
+  body.mode-terminal .tb-sec{opacity:0; max-width:0; border:0; padding:0;}
+  @media(max-width:620px){ .tb-sec{display:none;} }
+  /* ===== end-card ghost button ===== */
+  .ec.ghost{background:transparent; border-color:var(--rule-strong); color:var(--soft); cursor:pointer;}
+  .ec.ghost:hover{color:var(--ink); border-color:var(--navy);}
+  /* ===== radar grow-in ===== */
+  .radar.armed .rad-poly, .radar.armed .rad-dot{transform-box:fill-box; transform-origin:center; transform:scale(0);}
+  .radar.armed.draw-in .rad-poly{transform:scale(1); transition:transform .8s cubic-bezier(.2,1.25,.4,1);}
+  .radar.armed.draw-in .rad-dot{transform:scale(1); transition:transform .42s cubic-bezier(.2,1.6,.4,1);}
+  .radar.armed.draw-in .rad-dot:nth-of-type(1){transition-delay:.45s}
+  .radar.armed.draw-in .rad-dot:nth-of-type(2){transition-delay:.51s}
+  .radar.armed.draw-in .rad-dot:nth-of-type(3){transition-delay:.57s}
+  .radar.armed.draw-in .rad-dot:nth-of-type(4){transition-delay:.63s}
+  .radar.armed.draw-in .rad-dot:nth-of-type(5){transition-delay:.69s}
+  .radar.armed.draw-in .rad-dot:nth-of-type(6){transition-delay:.75s}
+  .radar.armed.draw-in .rad-dot:nth-of-type(7){transition-delay:.81s}
+  /* ===== command palette ===== */
+  .cmdk{position:fixed; inset:0; z-index:200; display:none; align-items:flex-start; justify-content:center; background:rgba(10,14,20,.5); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px); padding-top:13vh;}
+  .cmdk.open{display:flex;}
+  .cmdk-box{width:min(520px,92vw); background:var(--panel-2); border:1px solid var(--rule-strong); border-radius:12px; box-shadow:0 30px 80px -30px rgba(8,16,24,.6); overflow:hidden;}
+  .cmdk-in{width:100%; padding:14px 16px; border:0; border-bottom:1px solid var(--rule); background:transparent; color:var(--ink); font-family:var(--mono); font-size:15px; outline:none;}
+  .cmdk-list{max-height:52vh; overflow:auto; padding:6px;}
+  .cmdk-item{display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:8px; cursor:pointer; font-size:14px; color:var(--soft);}
+  .cmdk-item .n{font-family:var(--mono); font-size:11px; color:var(--teal); width:22px; flex:none;}
+  .cmdk-item.sel, .cmdk-item:hover{background:var(--navy-soft); color:var(--ink);}
+  .cmdk-hint{padding:9px 14px; font-family:var(--mono); font-size:10px; color:var(--faint); border-top:1px solid var(--rule); display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  /* ===== animated theme toggle (circular wipe) ===== */
+  ::view-transition-old(root){animation:none;}
+  ::view-transition-new(root){animation:themeWipe .55s cubic-bezier(.3,.8,.3,1);}
+  @keyframes themeWipe{from{clip-path:circle(0 at var(--wx,100%) var(--wy,0))}to{clip-path:circle(160% at var(--wx,100%) var(--wy,0))}}
+  /* ===== scroll-in draws (hidden-state animations: no-preference only) ===== */
+  @media (prefers-reduced-motion: no-preference){
+    body.mode-scroll .draw{stroke-dasharray:1400; stroke-dashoffset:1400; animation:none;}
+    body.mode-scroll section.seen .draw{animation:draw 1.8s cubic-bezier(.3,.7,.2,1) .15s forwards;}
+    body.mode-scroll .pop{opacity:0; animation:none;}
+    body.mode-scroll section.seen .pop{animation:pop .5s ease both;}
+    /* race → lock repair */
+    .rz-lane{stroke-dasharray:240; stroke-dashoffset:240;}
+    section.seen .rz-lane{animation:rzdraw .7s cubic-bezier(.2,.8,.2,1) forwards;}
+    section.seen .rz-lane:nth-of-type(2){animation-delay:.12s}
+    section.seen .rz-lane:nth-of-type(3){animation-delay:.24s}
+    .rz-lock{transform-box:fill-box; transform-origin:center; transform:scale(0); opacity:0;}
+    section.seen .rz-lock{animation:rzlock .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+    section.seen .rz-lock:nth-of-type(1){animation-delay:.5s}
+    section.seen .rz-lock:nth-of-type(2){animation-delay:.62s}
+    section.seen .rz-lock:nth-of-type(3){animation-delay:.74s}
+    section.seen .rz-tangle{animation:rzsettle 1.1s ease both;}
+    section.seen .rz-bang{animation:rzbang 1.1s ease both;}
+    @keyframes rzdraw{to{stroke-dashoffset:0}}
+    @keyframes rzlock{from{transform:scale(0);opacity:0}60%{transform:scale(1.15);opacity:1}to{transform:scale(1);opacity:1}}
+    @keyframes rzsettle{0%{opacity:.85}40%{opacity:.25}100%{opacity:.5}}
+    @keyframes rzbang{0%,55%{opacity:1}100%{opacity:.35}}
+  }
+  /* ===== card flip (double-click) ===== */
+  body.mode-scroll .str, body.mode-scroll .patterns, body.mode-scroll .nums{perspective:1400px;}
+  .flipcard{position:relative; transform-style:preserve-3d; transition:transform .65s cubic-bezier(.3,.8,.3,1); cursor:pointer;}
+  .flipcard.flipped{transform:rotateY(180deg) !important;}
+  .flipcard > *:not(.card-back){backface-visibility:hidden;}
+  .flipcard .card-back{position:absolute; inset:0; transform:rotateY(180deg); backface-visibility:hidden; display:flex; flex-direction:column; justify-content:center; gap:10px; padding:22px 24px; background:inherit; border-radius:inherit;}
+  .card-back .bk-label{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); font-weight:700;}
+  .card-back .bk-text{color:var(--ink); font-size:14.5px; line-height:1.55;}
+  .card-back .bk-hint{margin-top:auto; font-family:var(--mono); font-size:10px; color:var(--faint);}
+  @media (prefers-reduced-motion: reduce){
+    .flipcard{transition:none;}
+    .flipcard.flipped{transform:none;}
+    .flipcard.flipped > *:not(.card-back){display:none;}
+    .flipcard .card-back{transform:none; position:static; display:none;}
+    .flipcard.flipped .card-back{display:flex;}
+  }
+  /* ===== scorecard greeting ===== */
+  #scoreView .sc-greet{color:#E0A94A;}
+  .scorecard .sc-greet{display:block; font-family:var(--mono); font-size:12px; color:var(--teal); margin-bottom:12px; letter-spacing:.02em;}
+  /* ===== toast ===== */
+  .egg-toast{position:fixed; left:50%; bottom:30px; transform:translateX(-50%) translateY(20px); z-index:240; background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:13px; padding:12px 20px; border-radius:10px; box-shadow:0 20px 50px -20px rgba(0,0,0,.5); opacity:0; transition:opacity .3s, transform .3s; pointer-events:none; max-width:90vw; text-align:center;}
+  .egg-toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .party-canvas{position:fixed; inset:0; z-index:235; pointer-events:none;}
+  /* ===== blueprint / debug grid ===== */
+  body.blueprint .wrap > section{outline:1px dashed rgba(21,80,140,.45); outline-offset:6px;}
+  body.blueprint::after{content:"⌁ blueprint mode — triple-click brand to exit"; position:fixed; left:12px; bottom:12px; z-index:230; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); background:var(--panel-2); border:1px solid var(--navy); padding:5px 9px; border-radius:6px;}
+  /* ===== clickable terminal dots + states ===== */
+  .term-bar .dot{cursor:pointer; transition:transform .15s ease;}
+  .term-bar .dot:hover{transform:scale(1.25);}
+  .term.min .term-body{display:none;}
+  .term.max .term-body{min-height:72vh;}
+  @keyframes dotshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .term.shake{animation:dotshake .3s ease 2;}
+  .term-matrix{display:block; width:100%; height:220px; margin-top:10px; background:#060C10; border-radius:6px;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none;} .tline{opacity:1; transform:none;} .cursor{animation:none;}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .draw{stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 1.8s cubic-bezier(.3,.7,.2,1) .2s forwards;}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    .nbar > i{animation:grow 1.1s cubic-bezier(.2,.7,.2,1) both;}
+    @keyframes grow{from{width:0 !important}}
+    .pop{opacity:0; animation:pop .5s ease both;}
+    @keyframes pop{to{opacity:1}}
+  }
+</style>
+
+<div class="topbar">
+  <div class="tb-in">
+    <span class="tb-brand">Aman Verma · Engineering</span>
+    <span class="tb-sec" id="tbSec" aria-hidden="true"></span>
+    <span class="tb-ctl">
+      <span class="mlabel">mode</span>
+      <span class="pmode" role="tablist" aria-label="Presentation mode">
+        <button type="button" class="pm on" data-pm="terminal" role="tab" aria-selected="true">terminal</button>
+        <button type="button" class="pm" data-pm="scroll" role="tab" aria-selected="false">scroll</button>
+      </span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle night mode"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg><span class="lab">Night</span></button>
+    </span>
+  </div>
+  <div class="scrollprog" aria-hidden="true"><i id="scrollProgBar"></i></div>
+</div>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Engineering growth · 2023 → 2026 · iOS native → Kotlin Multiplatform</div>
+    <h1>From <span class="q">"does it run?"</span> to <span class="q">"does it scale?"</span></h1>
+    <p class="lede">Three years, five shipped modules, one through-line — I turn last year's worst bug into this year's best pattern.</p>
+    <div class="byline">
+      <span><b>iOS (Swift)</b> → KMM / Compose</span>
+      <span><b>5</b> modules shipped</span>
+      <span>from intern to <b>feature lead</b></span>
+    </div>
+
+    <div class="hero-art" style="display:none">
+      <svg viewBox="0 0 900 220" role="img" aria-label="A rising growth path through five engineering milestones from intern to lead">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#15508C" stop-opacity=".14"/>
+            <stop offset="1" stop-color="#15508C" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- faint grid -->
+        <g stroke="#E3E7EC" stroke-width="1">
+          <line x1="40" y1="45" x2="860" y2="45"/>
+          <line x1="40" y1="95" x2="860" y2="95"/>
+          <line x1="40" y1="145" x2="860" y2="145"/>
+        </g>
+        <!-- area + rising line -->
+        <path d="M60 180 C 180 172,210 160,300 142 S 470 108,560 92 S 730 58,840 40 L840 190 L60 190 Z" fill="url(#hg)"/>
+        <path class="draw" d="M60 180 C 180 172,210 160,300 142 S 470 108,560 92 S 730 58,840 40" fill="none" stroke="#15508C" stroke-width="3" stroke-linecap="round"/>
+        <!-- milestone glyphs -->
+        <g font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#56606B" text-anchor="middle">
+          <!-- node: curly braces (first code) -->
+          <circle cx="60" cy="180" r="6" fill="#fff" stroke="#B2544A" stroke-width="2.4"/>
+          <text x="60" y="206" fill="#8A939D">'23</text>
+          <!-- SDK box -->
+          <circle cx="300" cy="142" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/>
+          <text x="300" y="206" fill="#8A939D">'24</text>
+          <!-- layers -->
+          <circle cx="560" cy="92" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/>
+          <text x="560" y="206" fill="#8A939D">'25</text>
+          <!-- now -->
+          <circle cx="840" cy="40" r="8" fill="#0E8C78" stroke="#fff" stroke-width="2.5"/>
+          <text x="840" y="24" fill="#0E8C78" font-weight="700">now</text>
+        </g>
+        <text x="48" y="40" transform="rotate(-90 48 40)" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#8A939D" text-anchor="middle">craft &amp; scope →</text>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ============ MOTION · TERMINAL REPLAY ============ -->
+  <section class="term-wrap">
+    <div class="tlabel">the terminal · my header</div>
+    <h2>My career in a terminal — log, story, or why-hire-me</h2>
+    <p class="tintro">Three views of the same two and a half years — switch log / story / why-hire-me in the title bar. Flip to <b>scroll</b> mode up top (by Night) for the full animated dossier.</p>
+    <div class="term" id="term">
+      <div class="term-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="tmode" role="tablist" aria-label="Terminal view">
+          <button type="button" class="tm on" data-mode="log" role="tab" aria-selected="true">log</button>
+          <button type="button" class="tm" data-mode="story" role="tab" aria-selected="false">story</button>
+          <button type="button" class="tm" data-mode="hire" role="tab" aria-selected="false">why&nbsp;hire&nbsp;me</button>
+          <button type="button" class="tm" data-mode="score" role="tab" aria-selected="false">scorecard</button>
+        </span>
+        <span class="tctl" aria-label="Playback controls">
+          <button type="button" class="tbtn" id="tReplay" title="Replay" aria-label="Replay">↻</button>
+          <button type="button" class="tbtn playing" id="tPlay" title="Pause" aria-label="Pause">⏸</button>
+          <button type="button" class="tbtn" id="tSkip" title="Skip to end" aria-label="Skip to end">⏭</button>
+        </span>
+        <span class="ttl" id="termTitle">zsh — career.log</span>
+      </div>
+      <div class="term-body">
+        <span class="cmd"><span class="pr">aman@mobile</span> ~ % <span id="typed"></span><span class="cursor" id="cursor"></span></span>
+        <div id="logView" class="tview" style="margin-top:12px;">
+          <span class="tline"><span class="yr">2023</span> <span class="role">· intern→SDE</span>  <span class="pips">●</span>  <span class="txt">shared token manager + response interceptor — made shared state safe</span></span>
+          <span class="tline"><span class="yr">    </span> <span class="role">           </span>  <span class="pips">●</span>  <span class="txt">built a data-quality analytics framework · 150+ events standardized</span></span>
+          <span class="tline"><span class="yr">2024</span> <span class="role">· SDE      </span>  <span class="pips">●●</span>  <span class="txt">+38% personalization CTR · shipped to 4M+ users</span></span>
+          <span class="tline"><span class="yr">    </span> <span class="role">           </span>  <span class="pips">●●</span>  <span class="txt">AI hybrid module (WebKit + TypeScript bridge) · +50% in-app reach</span></span>
+          <span class="tline"><span class="yr">2025</span> <span class="role">· owner    </span>  <span class="pips">●●●</span>  <span class="txt">stepped onto Android — shipped the same surfaces in 10 days</span></span>
+          <span class="tline"><span class="yr">2026</span> <span class="role">· lead     </span>  <span class="pips">●●●●</span>  <span class="txt">KMM / Compose · in-app AI agent · automated crash-fix pipeline</span></span>
+          <span class="tline sum">──────────────────────────────────────────────</span>
+          <span class="tline sum"><b>2,000+</b> commits   <b>launch −15%</b>   <b>releases −10%</b>   crashes → a pipeline</span>
+          <span class="tline quip">// <span class="c">$</span> "it works on my machine" — shipped anyway ¯\_(ツ)_/¯</span>
+        </div>
+
+        <div id="storyView" class="tview" style="margin-top:12px; display:none;">
+          <span class="tline">I started as an intern who reached too far — a shared token manager</span>
+          <span class="tline">with single-flight refresh, shipped with races I didn't yet know how to tame.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline">So I learned the real lesson: <b>make shared state safe.</b></span>
+          <span class="tline">That one idea compounded for three years.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline">I owned analytics for <b>4M+ users</b>. I carried my surfaces from iOS to</span>
+          <span class="tline">Android in <b>ten days</b>. I moved onto Kotlin Multiplatform and shipped</span>
+          <span class="tline">an in-app AI agent. And I stopped fixing crashes by hand —</span>
+          <span class="tline">I built the <b>pipeline</b> that fixes them for everyone.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline sum">The category of my mistakes changed. That's what growth looks like.</span>
+          <span class="tline quip">// <span class="c">$</span> git commit -m "fixed the thing that fixed the other thing"</span>
+        </div>
+
+        <div id="hireView" class="tview" style="margin-top:12px; display:none;">
+          <span class="tline"><span class="qq">Q</span> Can you own a hard system end to end?</span>
+          <span class="tline"><span class="aa">A</span> Yes — analytics for 4M+ users, and the crash-fix pipeline the team ships on.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline"><span class="qq">Q</span> Do you write safe, correct code?</span>
+          <span class="tline"><span class="aa">A</span> I turned my worst early bug — data races — into a documented single-writer lock contract.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline"><span class="qq">Q</span> Can you work across platforms?</span>
+          <span class="tline"><span class="aa">A</span> iOS → Android in 10 days, then onto Kotlin Multiplatform. Same person, same quality.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline"><span class="qq">Q</span> Do you ship features, or systems?</span>
+          <span class="tline"><span class="aa">A</span> Systems — the reusable layer underneath: SDKs, CI pipelines, PR tooling.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline"><span class="qq">Q</span> How fast do you learn?</span>
+          <span class="tline"><span class="aa">A</span> Fast enough to turn a named weakness into a top strength within months.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline"><span class="qq">Q</span> What's your weak spot — honestly?</span>
+          <span class="tline"><span class="aa">A</span> Finishing as cleanly as I start — so I now split central classes early, by reflex.</span>
+          <span class="tline">&nbsp;</span>
+          <span class="tline sum">→ Hire me to own the hard, cross-platform surfaces and build what the team stands on.</span>
+          <span class="tline quip">// <span class="c">$</span> "I don't always test my code — but when I do, I do it in prod." ☕ → { }</span>
+        </div>
+
+        <div id="scoreView" class="tview" style="margin-top:12px; display:none;">
+          <span class="tline sc-greet" id="scGreetTerm"></span>
+          <span class="tline score-head"><b>dev-style rating</b> · 3.5 yrs in · <span class="ov">✓ 4.6</span><span class="of">&nbsp;/ 5.0</span> · <span class="role">strong senior-track</span></span>
+          <span class="tline"><span class="radar-host" id="scoreRadarTerm"></span></span>
+          <span class="tline sum"><span class="blk">◆</span> teal = rating · <span style="color:#E0A94A">┄ amber = 3.5 baseline</span> · rings 1–5</span>
+          <span class="tline sum"><b>verdict</b> ambitious, correct, well-structured — compounds feedback instead of repeating mistakes. gap is senior→staff polish, not skill.</span>
+          <span class="tline quip">// <span class="c">$</span> "ship it — the stars already aligned ★" — me, probably</span>
+        </div>
+        <div id="termOut" class="term-out" aria-live="polite"></div>
+        <label class="term-prompt" for="termInput"><span class="pr">aman@mobile</span> ~ % <input id="termInput" class="term-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Type a command — try: help"></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 1 · THE ARC ============ -->
+  <section>
+    <div class="shead"><span class="snum">01</span><h2>The arc, module by module</h2></div>
+    <p class="lead">Every year the work got harder and the structure got cleaner. The steepest climb was the very first stretch — the intern-era lesson corrected fast, then compounded for three years.</p>
+
+    <div class="chart" style="margin-top:22px;">
+      <svg viewBox="0 0 900 300" role="img" aria-label="Line chart of code quality rising from 2023 intern to 2026 lead">
+        <defs>
+          <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0E8C78" stop-opacity=".16"/>
+            <stop offset="1" stop-color="#0E8C78" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#E3E7EC" stroke-width="1">
+          <line x1="60" y1="40" x2="860" y2="40"/>
+          <line x1="60" y1="100" x2="860" y2="100"/>
+          <line x1="60" y1="160" x2="860" y2="160"/>
+          <line x1="60" y1="220" x2="860" y2="220"/>
+        </g>
+        <path d="M90 250 C 150 234,180 212,230 196 S 360 168,450 150 S 590 112,660 100 S 790 68,830 56 L830 252 L90 252 Z" fill="url(#ag)"/>
+        <path class="draw" d="M90 250 C 150 234,180 212,230 196 S 360 168,450 150 S 590 112,660 100 S 790 68,830 56" fill="none" stroke="#0E8C78" stroke-width="3" stroke-linecap="round"/>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="12" text-anchor="middle">
+          <circle class="pop" style="animation-delay:.5s" cx="90"  cy="250" r="6" fill="#fff" stroke="#B2544A" stroke-width="2.4"/>
+          <circle class="pop" style="animation-delay:.9s" cx="230" cy="196" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/>
+          <circle class="pop" style="animation-delay:1.2s" cx="450" cy="150" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/>
+          <circle class="pop" style="animation-delay:1.5s" cx="660" cy="100" r="6" fill="#fff" stroke="#15508C" stroke-width="2.4"/>
+          <circle class="pop" style="animation-delay:1.8s" cx="830" cy="56"  r="8.5" fill="#0E8C78" stroke="#fff" stroke-width="2.5"/>
+          <text class="pop" style="animation-delay:1.9s" x="830" y="40" fill="#0E8C78" font-weight="700" font-size="11">you are here</text>
+        </g>
+        <text x="60" y="30" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#8A939D">↑ code-review quality</text>
+      </svg>
+      <div class="milestones">
+        <div class="ms"><div class="yr">2023 · intern</div><div class="nm">Auth / Token Refresh</div><div class="ds">Single-flight refresh + interceptor — an ambitious pattern, reached for early.</div></div>
+        <div class="ms"><div class="yr">Nov 2023</div><div class="nm">Analytics SDK</div><div class="ds">A standalone framework — offline queue, SSL pinning, batching.</div></div>
+        <div class="ms"><div class="yr">2024</div><div class="nm">Analytics 2.0</div><div class="ds">Type-safe event layer — 97 protocols, one type per event, multi-provider.</div></div>
+        <div class="ms"><div class="yr">2025</div><div class="nm">Webinar 2.0 + Android</div><div class="ds">A full product area shipped leak-safe in 50 days; first cross-platform jump.</div></div>
+        <div class="ms now"><div class="yr">2026 · lead</div><div class="nm">AI Assistant (KMM)</div><div class="ds">Streaming in-app AI assistant on KMM — SDK-ready and test-backed.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · JUDGMENT ARC ============ -->
+  <section>
+    <div class="shead"><span class="snum">02</span><h2>How my judgment moved — a 3.5-year arc</h2></div>
+    <p class="lead">Read end to end, the record is a clear progression: foundations → owning hard surfaces → shaping architecture → building the platform the team ships from. Grounded in my real commit history across the iOS and cross-platform repos, <b>2023 → 2026</b>. <b>Tap any phase to expand.</b></p>
+
+    <div class="jarc">
+      <details class="phase" open>
+        <summary><span class="when">2023 · year one</span><span class="ptitle">Shared token infrastructure — and the safety lesson</span><span class="plus"></span></summary>
+        <div class="pbody">
+          <p>Year one was no warm-up — <b>596 commits</b> across the iOS core, building webinar analytics, the community feed and a comment revamp. The signature work was infrastructure well above my level: a <b>shared token manager with single-flight refresh and a response interceptor</b> that the whole app's networking ran through. Reaching for that hard pattern early is exactly why my bugs landed in <b>concurrency corners</b> — shared state touched across threads — and where I learned the lesson that still defines me: make shared state <b>safe</b>, don't just make it work.</p>
+          <div class="chips"><span class="chip">shared token manager</span><span class="chip">single-flight refresh</span><span class="chip">response interceptor</span><span class="chip">webinar analytics</span><span class="chip">596 commits</span></div>
+          <div class="commits"><div class="cl">Representative commits · 2023</div><span class="cm"><span class="h">2023-07-12</span>  shared token manager + network wrapper</span><span class="cm"><span class="h">2023-07-15</span>  response interceptor for token refresh</span><span class="cm"><span class="h">2023-07-17</span>  state management for response interceptor</span></div>
+        </div>
+      </details>
+
+      <details class="phase" open>
+        <summary><span class="when">2024 · iOS</span><span class="ptitle">From fixing screens to owning surfaces</span><span class="plus"></span></summary>
+        <div class="pbody">
+          <p>My first commits here land <b>Jul 2024</b>. I quickly owned whole product surfaces inside the iOS app's <b>core framework</b> — community, CME, product &amp; transaction flows — plus the <b>analytics event layer</b>. Judgment moved to <b>end-to-end feature ownership</b>; commit messages, though, were still freeform.</p>
+          <div class="chips"><span class="chip">core framework · 1,906 touches</span><span class="chip">analytics SDK ×109</span><span class="chip">CME · from Oct 2024</span></div>
+          <div class="commits"><div class="cl">Representative commits</div><span class="cm"><span class="h">2024-12-26</span>  community section update</span><span class="cm"><span class="h">2024-12-26</span>  transaction type event</span><span class="cm"><span class="h">2024-12-30</span>  survey card ui</span></div>
+        </div>
+      </details>
+
+      <details class="phase" open>
+        <summary><span class="when">2025 · cross-platform</span><span class="ptitle">Architecture — and adapting iOS → Android fast</span><span class="plus"></span></summary>
+        <div class="pbody">
+          <p>I rebuilt my iOS surfaces into a <b>shared feature module</b> with clean <b>data / domain / presentation</b> layers. Then, when the <b>Android team was short-handed</b>, I stepped straight onto Android — and within <b>ten days</b> was shipping the same surfaces I owned on iOS: <b>webinar, CME and consent</b>, ramping from zero to <b>81 commits in my first month</b>. Owning one product across two native platforms is where my judgment moved from <em>"ship the feature"</em> to <b>"shape the boundaries"</b> — and it proved how fast I adapt.</p>
+          <div class="chips"><span class="chip">shared feature module · 825</span><span class="chip">iOS → Android · Sep 2025</span><span class="chip">webinar + CME on Android</span><span class="chip">0 → 81 commits / month 1</span><span class="chip">consent ×47</span></div>
+          <div class="commits"><div class="cl">Representative commits · Android</div><span class="cm"><span class="h">2025-09-25</span>  cme → webinar dashboard routing</span><span class="cm"><span class="h">2025-10-10</span>  webinar completed empty state</span><span class="cm"><span class="h">2025-11-07</span>  explore webinar tab</span></div>
+        </div>
+      </details>
+
+      <details class="phase now" open>
+        <summary><span class="when">2026 · now · lead</span><span class="ptitle">Building what the team ships from</span><span class="plus"></span></summary>
+        <div class="pbody">
+          <p>I moved onto <b>KMM / Compose</b> (the shared app module), shipped the in-app <b>AI agent</b> integration, the sidebar and exam-onboarding, and drove the <b>monorepo migration</b>. Then I went a level up — building <b>platform tooling the whole team uses</b>: a PR-review worker, a crash-fix pipeline, and automated security audits in CI. Even my commit log matured — freeform 2024 subjects became disciplined <code>feat / fix / ci(scope):</code> conventional commits.</p>
+          <div class="chips"><span class="chip">shared app · KMM</span><span class="chip">AI agent · Mar→Oct 2026</span><span class="chip">sidebar · Apr 2026</span><span class="chip">monorepo migration</span><span class="chip">PR-review worker</span><span class="chip">security audits in CI</span></div>
+          <div class="commits"><div class="cl">Representative commits</div><span class="cm"><span class="h">2026-10-27</span>  feat(security): automated PR security-review pipeline</span><span class="cm"><span class="h">2026-10-27</span>  fix(security): gate dependency-check in CI</span><span class="cm"><span class="h">2026-10-29</span>  feat: extend in-app AI agent capabilities</span></div>
+        </div>
+      </details>
+    </div>
+    <p class="story-note" style="margin-top:20px;">The one constant across every era: the discipline I'm still making automatic is <b>splitting a central coordinator class before it grows large</b> — the same habit from the intern days to now, and my next rung up.</p>
+  </section>
+
+  <!-- ============ 3 · THE GROWTH LINE ============ -->
+  <section>
+    <div class="shead"><span class="snum">03</span><h2>My biggest early weakness is now a strength</h2></div>
+    <p class="lead">The clearest proof of growth isn't that I stopped making mistakes — it's that the <em>category</em> of mistake changed. Here's the single clearest before → after.</p>
+
+    <div class="story" style="margin-top:22px;">
+      <div class="pane before">
+        <div class="tag">2023 · the weakness</div>
+        <h3>Unsynchronized data races</h3>
+        <svg viewBox="0 0 300 90" role="img" aria-label="Tangled, crossing threads representing data races">
+          <path class="rz-tangle" d="M10 20 C 80 70, 140 10, 210 60 S 280 30, 290 50" fill="none" stroke="#B2544A" stroke-width="2.2" opacity=".85"/>
+          <path class="rz-tangle" d="M10 45 C 90 15, 150 75, 220 25 S 275 65, 290 35" fill="none" stroke="#B2544A" stroke-width="2.2" opacity=".6"/>
+          <path class="rz-tangle" d="M10 68 C 70 40, 160 80, 215 45 S 270 20, 290 60" fill="none" stroke="#C78A82" stroke-width="2.2" opacity=".55"/>
+          <circle class="rz-bang" cx="150" cy="45" r="7" fill="#fff" stroke="#B2544A" stroke-width="2.4"/>
+          <text class="rz-bang" x="150" y="49" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#B2544A" text-anchor="middle">!</text>
+        </svg>
+        <p>My token manager was a mutable <code>static&nbsp;var&nbsp;shared</code> singleton whose state was touched across threads with no lock — and some completion paths fired neither success nor failure, so the app could silently hang. The ambition was right; the safety wasn't.</p>
+      </div>
+      <div class="pane after">
+        <div class="tag">now · the strength</div>
+        <h3>A single-writer lock contract</h3>
+        <svg viewBox="0 0 300 90" role="img" aria-label="Clean parallel lanes guarded by locks">
+          <g stroke="#0E8C78" stroke-width="2.4">
+            <line class="rz-lane" x1="10" y1="22" x2="248" y2="22"/>
+            <line class="rz-lane" x1="10" y1="45" x2="248" y2="45"/>
+            <line class="rz-lane" x1="10" y1="68" x2="248" y2="68"/>
+          </g>
+          <g fill="#0E8C78">
+            <g class="rz-lock" transform="translate(262,14)"><rect x="0" y="6" width="16" height="12" rx="2"/><path d="M3 6 V3 a5 5 0 0 1 10 0 V6" fill="none" stroke="#0E8C78" stroke-width="2"/></g>
+            <g class="rz-lock" transform="translate(262,37)"><rect x="0" y="6" width="16" height="12" rx="2"/><path d="M3 6 V3 a5 5 0 0 1 10 0 V6" fill="none" stroke="#0E8C78" stroke-width="2"/></g>
+            <g class="rz-lock" transform="translate(262,60)"><rect x="0" y="6" width="16" height="12" rx="2"/><path d="M3 6 V3 a5 5 0 0 1 10 0 V6" fill="none" stroke="#0E8C78" stroke-width="2"/></g>
+          </g>
+        </svg>
+        <p>Today, documented lock-based concurrency is one of my strongest areas: <code>Mutex</code>-guarded state with a single-writer contract, explicit success/failure on every path. Same instinct — done right.</p>
+      </div>
+    </div>
+    <p class="story-note">The singleton was never the real mistake — a token manager <em>should</em> have one source of truth. What I learned was to make shared state <b>safe</b>. Understanding <em>why</em> it was wrong mattered far more than simply never doing it again.</p>
+  </section>
+
+  <!-- ============ 4 · CRASHES ============ -->
+  <section>
+    <div class="shead"><span class="snum">04</span><h2>Crashes — from hand-fixing to a pipeline</h2></div>
+    <p class="lead">Stability has been a constant thread for 3.5 years — but how I handle it changed completely. I stopped fixing crashes one at a time and built the system that fixes them for the whole team.</p>
+    <div class="crashflow">
+      <div class="cstep">
+        <div class="cstage">2023–24 · reactive</div>
+        <h4>One crash at a time</h4>
+        <p>Patched issues by hand as they surfaced across the iOS app — list views, text input, notification taps.</p>
+        <div class="cc"><span class="h">2023-05-06</span> crash on list reload<br><span class="h">2024-01-22</span> detail-screen crash</div>
+      </div>
+      <div class="cstep">
+        <div class="cstage">2025 · instrumented</div>
+        <h4>Tracked, not guessed</h4>
+        <p>Wired crash and analytics signals together so failures were measured and traced to a cause, not just patched.</p>
+        <div class="cc"><span class="h">2025-02-19</span> analytics crash traced &amp; fixed</div>
+      </div>
+      <div class="cstep now">
+        <div class="cstage">2026 · systematic</div>
+        <h4>A crash-fix pipeline</h4>
+        <p>Proper dSYM symbolication plus an automated crash-fix pipeline — stability became infrastructure the whole team ships on.</p>
+        <div class="cc"><span class="h">2026-09-15</span> dSYM symbolication<br><span class="h">2026-07-08</span> automated crash-fix pipeline</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · STRENGTHS ============ -->
+  <section>
+    <div class="shead"><span class="snum">05</span><h2>What I bring</h2></div>
+    <p class="lead">Four things that show up in my work again and again — in plain terms, each backed by what I actually shipped.</p>
+
+    <div class="str" style="margin-top:22px;">
+      <div class="scard">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#15508C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <h3>I build platforms, not just features</h3>
+        <p>Hand me one feature and I tend to ship the reusable layer underneath it — the thing the rest of the team then builds on.</p>
+        <div class="chips"><span class="chip">analytics owner: iOS→Android→KMM</span><span class="chip">standalone SDKs</span><span class="chip">monorepo migration</span></div>
+      </div>
+      <div class="scard">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#15508C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V6"/><path d="M6 12l6-6 6 6"/><path d="M5 20h14"/></svg>
+        <h3>I reach for the hard-correct pattern</h3>
+        <p>I pick the more correct approach before I've fully mastered it. The upside: my bugs land in genuinely hard corners, never in basic logic.</p>
+        <div class="chips"><span class="chip">single-flight refresh</span><span class="chip">protocol-per-event taxonomy</span></div>
+      </div>
+      <div class="scard sig">
+        <span class="sig-lab">signature</span>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#0E8C78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+        <h3>I compound feedback, fast</h3>
+        <p>My defining trait. I don't just stop a mistake — I learn <em>why</em> it was wrong and convert it into a permanent instinct within months.</p>
+        <div class="chips"><span class="chip">races → documented locks</span><span class="chip">tests 4 → 697 in a year</span></div>
+      </div>
+      <div class="scard">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#15508C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="13" y1="4" x2="11" y2="20"/></svg>
+        <h3>My code reads as designed</h3>
+        <p>I reach for type-safety, clean boundaries and clear interfaces by reflex — the same taste in 2024 as in 2026. It reads "designed," not "assembled."</p>
+        <div class="chips"><span class="chip">97 protocols</span><span class="chip">provider interfaces</span><span class="chip">typed taxonomies</span></div>
+      </div>
+    </div>
+
+    <div class="growth">
+      <div class="l">What I'm sharpening next</div>
+      <p>Finishing as cleanly as I start. My one honest habit is letting a central coordinator class grow large before I split it — so I'm now <b>splitting those classes early, by reflex</b>, the same way memory-safety and concurrency already are.</p>
+    </div>
+  </section>
+
+  <!-- ============ 6 · PATTERNS ============ -->
+  <section>
+    <div class="shead"><span class="snum">06</span><h2>Signature patterns — how I build</h2></div>
+    <p class="lead">The same instincts show up in my code year after year. These are the patterns that tell you <em>how</em> I work, not just what I shipped — each one verified across the arc.</p>
+    <div class="patterns">
+      <div class="pat">
+        <div class="pn"><h4>One source of truth, made safe</h4><span class="since">2023 → now</span></div>
+        <p>A critical resource gets exactly one owner — and I guard its shared state instead of hoping. The 2023 token manager taught me the hard way; the documented single-writer lock contract is the mature form.</p>
+        <div class="chips"><span class="chip">token manager → Mutex</span><span class="chip">single-writer locks</span></div>
+      </div>
+      <div class="pat">
+        <div class="pn"><h4>Interface-first, not inline</h4><span class="since">every era</span></div>
+        <p>I define the contract before the implementation — protocols and provider interfaces — so a feature extends by adding a type, never by editing a monolith.</p>
+        <div class="chips"><span class="chip">97 protocols</span><span class="chip">provider interfaces</span><span class="chip">SDK boundaries</span></div>
+      </div>
+      <div class="pat">
+        <div class="pn"><h4>Build the reusable layer</h4><span class="since">2023 → now</span></div>
+        <p>Handed a feature, I ship the framework underneath it — the thing the whole team ends up depending on.</p>
+        <div class="chips"><span class="chip">analytics SDK</span><span class="chip">crash-fix pipeline</span><span class="chip">PR-review worker</span></div>
+      </div>
+      <div class="pat">
+        <div class="pn"><h4>Reach one rung up</h4><span class="since">from day one</span></div>
+        <p>I pick the harder-correct pattern before I've fully mastered it — so my bugs land in hard corners like concurrency, not in basic logic.</p>
+        <div class="chips"><span class="chip">single-flight refresh as a junior</span></div>
+      </div>
+      <div class="pat">
+        <div class="pn"><h4>Turn a weakness into infrastructure</h4><span class="since">the throughline</span></div>
+        <p>I don't just fix a flaw — I convert it into a system. Races became a lock contract; fixing crashes by hand became an automated pipeline.</p>
+        <div class="chips"><span class="chip">races → locks</span><span class="chip">hand-fixes → crash pipeline</span></div>
+      </div>
+      <div class="pat">
+        <div class="pn"><h4>Carry a domain across platforms</h4><span class="since">2023 → now</span></div>
+        <p>I move a product area intact across platforms and eras — keeping the hard-won knowledge instead of restarting from zero.</p>
+        <div class="chips"><span class="chip">analytics iOS→Android→KMM</span><span class="chip">webinar iOS→Android</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · STACK ============ -->
+  <section>
+    <div class="shead"><span class="snum">07</span><h2>The stack I work in</h2></div>
+    <p class="lead">One product, two native stacks. The tools I actually shipped in — iOS-native first, then Kotlin Multiplatform.</p>
+    <div class="stack">
+      <div class="srow head"><span class="sh cat">&nbsp;</span><span class="sh ios">iOS native (Swift)</span><span class="sh kmm">Kotlin Multiplatform</span></div>
+      <div class="srow"><span class="scat">Language</span><span class="sval">Swift</span><span class="sval k">Kotlin</span></div>
+      <div class="srow"><span class="scat">UI</span><span class="sval">UIKit</span><span class="sval k">Compose Multiplatform</span></div>
+      <div class="srow"><span class="scat">Architecture</span><span class="sval">VIPER + clean layers</span><span class="sval k">KMM + SDK boundaries</span></div>
+      <div class="srow"><span class="scat">Concurrency</span><span class="sval">GCD / DispatchQueue</span><span class="sval k">Coroutines · StateFlow · Mutex</span></div>
+      <div class="srow"><span class="scat">Networking</span><span class="sval">URLSession + SSL pinning</span><span class="sval k">Ktor</span></div>
+      <div class="srow"><span class="scat">Persistence</span><span class="sval">CoreData</span><span class="sval k">SQLCipher</span></div>
+      <div class="srow"><span class="scat">DI</span><span class="sval">manual / shared</span><span class="sval k">Koin</span></div>
+      <div class="srow"><span class="scat">Build &amp; CI</span><span class="sval">CocoaPods · Fastlane · Jenkins</span><span class="sval k">Gradle KTS · Fastlane · Bitbucket Pipelines</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · NUMBERS ============ -->
+  <section>
+    <div class="shead"><span class="snum">08</span><h2>The numbers that moved</h2></div>
+    <p class="lead">Same engineer, three years apart. These are the signals a code review actually penalizes — and all of them went the right way.</p>
+
+    <div class="nums" style="margin-top:22px;">
+      <div class="ncard">
+        <div class="k">Concurrency safety</div>
+        <div class="trans"><span class="was">unsynced races</span><span class="arw">→</span><span class="is">32 documented locks</span></div>
+        <div class="nbar"><i style="width:92%"></i></div>
+      </div>
+      <div class="ncard">
+        <div class="k">Automated tests</div>
+        <div class="trans"><span class="was">0</span><span class="arw">→</span><span class="is">63 test files</span></div>
+        <div class="nbar"><i style="width:85%"></i></div>
+      </div>
+      <div class="ncard">
+        <div class="k">Crash surface (force-unwraps)</div>
+        <div class="trans"><span class="was">high</span><span class="arw">→</span><span class="is">9 in 44k LOC</span></div>
+        <div class="nbar"><i style="width:90%"></i></div>
+      </div>
+      <div class="ncard">
+        <div class="k">Architecture</div>
+        <div class="trans"><span class="was">monolith + singletons</span><span class="arw">→</span><span class="is">layered KMM + SDK</span></div>
+        <div class="nbar"><i style="width:88%"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9 · SCORECARD ============ -->
+  <section>
+    <div class="shead"><span class="snum">09</span><h2>The scorecard — rated like a code review</h2></div>
+    <p class="lead">The same self-review, scored the way a reviewer would: seven dimensions on a five-star scale, with a <b>3.5 baseline</b> marked so you can see what clears the bar and what's still climbing.</p>
+
+    <div class="scorecard">
+      <div class="sc-greet" id="scGreetScroll"></div>
+      <div class="sc-top">
+        <div class="sc-ov"><span class="chk">✓</span>4.6<span class="den">/5.0</span></div>
+        <div class="sc-tag"><b>Strong senior-track engineer</b><span class="sc-pass">pass · exceeds the 3.5 bar</span></div>
+        <div class="sc-base"><i></i> baseline 3.5</div>
+      </div>
+      <div class="radar-host" id="scoreRadarScroll"></div>
+      <div class="sc-legend"><span class="lg data">rating</span><span class="lg base">3.5 baseline</span><span class="lg ring">rings = 1–5</span></div>
+      <p class="sc-note">Ambitious, correct, well-structured — and compounds feedback instead of repeating mistakes. The two axes sitting on the 3.5 line (testing, restraint) are the senior→staff polish still in progress, not a skill gap.</p>
+    </div>
+  </section>
+
+  <!-- ============ 10 · CURRENT WORK ============ -->
+  <section>
+    <div class="shead"><span class="snum">10</span><h2>What I'm building now</h2></div>
+    <p class="lead">My current work — and the clearest snapshot of where the arc has landed.</p>
+
+    <div class="now-card" style="margin-top:22px;">
+      <div class="now-art">
+        <svg viewBox="0 0 220 200" role="img" aria-label="AI assistant SDK core with provider interfaces and a streaming output">
+          <defs><style>.nl{stroke:#5ED0B8;stroke-width:1.6;opacity:.6}.nn{fill:#13314d;stroke:#5ED0B8;stroke-width:1.4}.nt{fill:#cfe9e2;font-family:ui-monospace,Menlo,monospace;font-size:9px;text-anchor:middle}</style></defs>
+          <!-- links -->
+          <g class="nl" fill="none">
+            <line x1="110" y1="100" x2="45" y2="45"/>
+            <line x1="110" y1="100" x2="175" y2="45"/>
+            <line x1="110" y1="100" x2="30" y2="110"/>
+            <line x1="110" y1="100" x2="190" y2="110"/>
+            <line x1="110" y1="100" x2="110" y2="170"/>
+          </g>
+          <!-- provider nodes -->
+          <g><circle class="nn" cx="45" cy="45" r="16"/><text class="nt" x="45" y="48">chat</text></g>
+          <g><circle class="nn" cx="175" cy="45" r="16"/><text class="nt" x="175" y="48">auth</text></g>
+          <g><circle class="nn" cx="30" cy="110" r="16"/><text class="nt" x="30" y="113">tools</text></g>
+          <g><circle class="nn" cx="190" cy="110" r="16"/><text class="nt" x="190" y="113">data</text></g>
+          <!-- core -->
+          <circle cx="110" cy="100" r="30" fill="#0E8C78" stroke="#5ED0B8" stroke-width="2"/>
+          <text x="110" y="97" fill="#fff" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="700" text-anchor="middle">SDK</text>
+          <text x="110" y="109" fill="#bdeee3" font-family="ui-monospace,Menlo,monospace" font-size="8" text-anchor="middle">core</text>
+          <!-- streaming output -->
+          <g fill="#5ED0B8"><rect x="80" y="172" width="22" height="5" rx="2.5"/><rect x="106" y="172" width="14" height="5" rx="2.5" opacity=".7"/><rect x="124" y="172" width="18" height="5" rx="2.5" opacity=".45"/></g>
+          <text x="110" y="193" class="nt" fill="#9fc7bd">streaming ▸</text>
+        </svg>
+      </div>
+      <div class="now-body">
+        <div class="tag">Current · 2026 · feature lead</div>
+        <h3>In-app AI Assistant</h3>
+        <div class="meta">Kotlin Multiplatform / Compose</div>
+        <p>A full AI-agent feature with real-time response streaming, built SDK-ready behind clean provider interfaces and backed by real tests. It's the module where my worst 2023 weakness shows up as a strength — concurrency is documented and locked, the crash surface is near-zero, and state flows one direction.</p>
+        <div class="now-stats">
+          <span><b data-count="175">175</b> reactive state streams</span>
+          <span><b data-count="32">32</b> documented locks</span>
+          <span><b data-count="63">63</b> test files</span>
+          <span><b data-count="5">5</b> provider interfaces</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9 · EXPLORING ============ -->
+  <section>
+    <div class="shead"><span class="snum">11</span><h2>Where I'm heading — on-device AI</h2></div>
+    <p class="lead">The arc points one way: private, on-device AI across both platforms — inference on the phone, data that never leaves it. What I'm going deep on now —</p>
+    <div class="explore">
+      <div class="efocus"><h4>On-device AI</h4><p>Running model inference locally on the phone — fast, private, and available with no connection.</p></div>
+      <div class="efocus"><h4>On-device RAG</h4><p>Retrieval over the user's own local data, so answers get real context without any of it leaving the device.</p></div>
+      <div class="efocus"><h4>Apple Intelligence</h4><p>The iOS Foundation Models framework — native, on-device generation and tool-calling in Swift.</p></div>
+      <div class="efocus"><h4>Android AICore · Gemini Nano</h4><p>Google's on-device LLM layer — the Android half of the same private-AI story.</p></div>
+      <div class="efocus" style="grid-column:1/-1"><h4>Offline-first AI agents</h4><p>The natural next step for the cross-platform agent work I already ship — agents that keep working with no network, powered by the on-device stack above.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSE ============ -->
+  <div class="pull">
+    <p>The category of my mistakes changed — and that's exactly what growth looks like. I <span class="ac">build the layer others stand on</span>, reach one rung past what I've proven, and <span class="ac">turn last year's worst bug into this year's best pattern</span>.</p>
+    <div class="sign">— Aman · mobile engineer · iOS → Kotlin Multiplatform</div>
+  </div>
+
+  <div class="verified">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0E8C78" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2l2.5 1.9 3.1.2 1 3 2.4 1.9-1 3 1 3-2.4 1.9-1 3-3.1.2L12 22l-2.5-1.8-3.1-.2-1-3L3 15.9l1-3-1-3 2.4-1.9 1-3 3.1-.2z"/>
+      <path d="M8.5 12.3l2.4 2.4 4.6-5.1"/>
+    </svg>
+    <div class="vt"><b>VERIFIED.</b> Generated with Claude and backed by my real git commit history (2023 → Oct 2026). Commit messages shown are paraphrased, and internal names removed, to avoid exposing confidential company detail.</div>
+  </div>
+
+  <footer>
+    A candid self-review of my own engineering, compiled from a direct read of my shipped code (2023 → 2026). The timeline and commit evidence are drawn from real git history across all four repos; some code-quality metrics are from direct source review. Figures measure direction of travel, not a single ruler.
+  </footer>
+
+  <!-- ============ END OF SCROLL · REWARD ============ -->
+  <section class="endcard" id="endcard">
+    <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+    <div class="end-in">
+      <div class="eb">⌁ end of line · you scrolled the whole thing</div>
+      <h2>You actually read to the bottom.</h2>
+      <p>Most people bail around section 03. You just read a full self-review — lock contracts, force-unwraps, single-flight refresh — all the way down. That attention span is exactly what I build for.</p>
+      <div class="end-cta">
+        <a class="ec primary" href="https://www.linkedin.com/in/a4amanver15/" target="_blank" rel="noopener noreferrer">★ Recommend me</a>
+        <a class="ec" href="mailto:a4amanver15@gmail.com">✦ Talk to me</a>
+        <button type="button" class="ec ghost" id="replayStory">↻ Replay the story</button>
+      </div>
+      <div class="end-quote">“There are only two hard things in computer science: cache invalidation, naming things, and scrolling this far.”<span>— you, just now</span></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Jump to a section">
+  <div class="cmdk-box">
+    <input class="cmdk-in" id="cmdkIn" type="text" placeholder="Jump to a section…  (type to filter)" autocomplete="off" aria-label="Filter sections">
+    <div class="cmdk-list" id="cmdkList"></div>
+    <div class="cmdk-hint"><span>↑↓ navigate</span><span>↵ jump</span><span>esc close</span></div>
+  </div>
+</div>
+
+<div class="egg-toast" id="eggToast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var btn=document.getElementById('themeToggle');
+  function swapTheme(){ var lab=btn&&btn.querySelector('.lab');
+    if(root.getAttribute('data-theme')==='dark'){ root.removeAttribute('data-theme'); if(lab) lab.textContent='Night'; }
+    else { root.setAttribute('data-theme','dark'); if(lab) lab.textContent='Day'; } }
+  function toggleTheme(coords){
+    if(!reduce && document.startViewTransition){
+      if(coords){ root.style.setProperty('--wx',coords.x+'px'); root.style.setProperty('--wy',coords.y+'px'); }
+      document.startViewTransition(swapTheme);
+    } else { swapTheme(); }
+  }
+  var themeTaps=[];
+  if(btn){ btn.addEventListener('click', function(){
+    var r=btn.getBoundingClientRect();
+    toggleTheme({x:(r.left+r.width/2)|0, y:(r.top+r.height/2)|0});
+    var now=Date.now(); themeTaps.push(now); themeTaps=themeTaps.filter(function(t){return now-t<1400;});
+    if(themeTaps.length>=3){ themeTaps=[]; eggParty('✦ you really like switches, huh?'); }
+  }); }
+
+  var CMDS={log:'git log --author=aman.verma --career', story:'cat the-story.md', hire:'./why-hire-me.sh', score:'./self-review --stars'};
+  var TITLES={log:'zsh — career.log', story:'zsh — the-story.md', hire:'zsh — why-hire-me', score:'zsh — scorecard'};
+  var VIEW={log:'logView', story:'storyView', hire:'hireView', score:'scoreView'};
+  var curMode=null;
+  var runId=0;            // bumps every (re)run; stale pumps abort
+  var paused=false;
+  var seqTimer=null;      // active setTimeout id
+  var steps=[], stepIdx=0;// current run's step queue + cursor
+  var finishFn=null;      // snaps current run to its end state
+
+  var playBtn=document.getElementById('tPlay');
+  function setPlayBtn(isPlaying){
+    if(!playBtn) return;
+    playBtn.classList.toggle('playing', isPlaying);
+    playBtn.textContent = isPlaying ? '⏸' : '▶';
+    playBtn.setAttribute('title', isPlaying ? 'Pause' : 'Play');
+    playBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
+  }
+
+  function pump(myRun){
+    if(myRun!==runId || paused) return;
+    if(stepIdx>=steps.length){ seqTimer=null; return; }
+    var step=steps[stepIdx++];
+    step.fn();
+    if(stepIdx>=steps.length){ seqTimer=null; return; }
+    seqTimer=setTimeout(function(){ pump(myRun); }, step.delay);
+  }
+
+  function runTerminal(mode){
+    var typed=document.getElementById('typed'); if(!typed) return;
+    curMode=mode;
+    var myRun=++runId;
+    if(seqTimer){ clearTimeout(seqTimer); seqTimer=null; }
+    paused=false; setPlayBtn(true);
+    var title=document.getElementById('termTitle'); if(title) title.textContent=TITLES[mode];
+    Object.keys(VIEW).forEach(function(k){ var v=document.getElementById(VIEW[k]); if(!v) return;
+      v.style.display=(k===mode?'block':'none'); v.querySelectorAll('.tline').forEach(function(l){l.classList.remove('show');}); });
+    var view=document.getElementById(VIEW[mode]); var lines=view.querySelectorAll('.tline'); var cmd=CMDS[mode];
+    typed.textContent='';
+    if(mode==='score') setGreet('scGreetTerm');
+
+    // snap-to-end used by reduce-motion and the skip button
+    finishFn=function(){ typed.textContent=cmd; lines.forEach(function(l){l.classList.add('show');}); };
+
+    if(reduce){ finishFn(); return; }
+
+    // build the step queue: type command char-by-char, pause, then reveal lines
+    steps=[]; stepIdx=0;
+    for(var c=1;c<=cmd.length;c++){ (function(n){ steps.push({fn:function(){ typed.textContent=cmd.slice(0,n); }, delay:30}); })(c); }
+    if(steps.length){ steps[steps.length-1].delay=240; } // gap after typing, before lines
+    lines.forEach(function(l){ steps.push({fn:function(){ l.classList.add('show'); }, delay:150}); });
+
+    pump(myRun);
+    if(mode==='score'){ setTimeout(function(){ if(curMode==='score') animateRadar('scoreRadarTerm'); }, 900); }
+  }
+
+  function pauseTerminal(){
+    if(paused) return;
+    paused=true;
+    if(seqTimer){ clearTimeout(seqTimer); seqTimer=null; }
+    setPlayBtn(false);
+  }
+  function resumeTerminal(){
+    if(!paused) return;
+    paused=false; setPlayBtn(true);
+    pump(runId);
+  }
+  function skipTerminal(){
+    paused=false;
+    if(seqTimer){ clearTimeout(seqTimer); seqTimer=null; }
+    stepIdx=steps.length;
+    if(finishFn) finishFn();
+    setPlayBtn(true);
+  }
+
+  document.querySelectorAll('.tm').forEach(function(b){ b.addEventListener('click', function(){
+    var m=b.getAttribute('data-mode'); if(m===curMode) return;
+    document.querySelectorAll('.tm').forEach(function(x){ var on=(x===b); x.classList.toggle('on',on); x.setAttribute('aria-selected', on?'true':'false'); });
+    runTerminal(m);
+  }); });
+
+  var replayBtn=document.getElementById('tReplay'), skipBtn=document.getElementById('tSkip');
+  if(replayBtn) replayBtn.addEventListener('click', function(){ runTerminal(curMode||'log'); });
+  if(skipBtn) skipBtn.addEventListener('click', skipTerminal);
+  if(playBtn) playBtn.addEventListener('click', function(){ if(paused) resumeTerminal(); else pauseTerminal(); });
+  if(reduce && playBtn){ // nothing to animate — hide transport affordances
+    playBtn.style.display='none'; if(skipBtn) skipBtn.style.display='none';
+  }
+
+  // ---- interactive terminal: typed commands (mini-shell) ----
+  var termInput=document.getElementById('termInput'), termOut=document.getElementById('termOut');
+  var cmdHist=[], histIdx=0;
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function termPrint(html){ if(!termOut) return; var d=document.createElement('div'); d.innerHTML=html; termOut.appendChild(d); }
+  var SHELL_VIEW={log:'log',story:'story',hire:'hire','why-hire-me':'hire',why:'hire',score:'score',scorecard:'score',stars:'score'};
+  function runShell(raw){
+    var cmd=(raw||'').trim(); if(!cmd) return;
+    var name=cmd.split(/\s+/)[0].toLowerCase();
+    // view commands update the main view at the top — clear the scratch line
+    if(SHELL_VIEW.hasOwnProperty(name)){
+      var m=SHELL_VIEW[name];
+      document.querySelectorAll('.tm').forEach(function(x){ var on=(x.getAttribute('data-mode')===m); x.classList.toggle('on',on); x.setAttribute('aria-selected',on?'true':'false'); });
+      runTerminal(m);
+      if(termOut) termOut.innerHTML='';
+      return;
+    }
+    // fun with destructive-looking input
+    if(/rm\s+-rf/.test(cmd)){
+      if(termOut) termOut.innerHTML='<div class="dim">aman@mobile ~ % '+escapeHtml(cmd)+'</div><div><span class="err">deleting everything</span> <span class="dim">… ███████ 73%</span></div>';
+      setTimeout(function(){ if(termOut) termOut.innerHTML='<div><span class="ok">just kidding 🙂</span> <span class="dim">your résumé is safe — and version-controlled.</span></div>'; }, 1400);
+      return;
+    }
+    // info commands REPLACE the output (never append / accumulate)
+    var out;
+    if(name==='help'){
+      out='<span class="ok">available commands</span>\n  <span class="warn">log</span>        the career log\n  <span class="warn">story</span>      the narrative\n  <span class="warn">hire</span>       why hire me\n  <span class="warn">scorecard</span>  star ratings\n  <span class="warn">whoami</span>     who is this\n  <span class="warn">ls</span>         list the views\n  <span class="warn">clear</span>      clear the screen\n<span class="dim">  …and a few that aren\'t on this list. go on, poke around.</span>';
+    } else if(name==='ls'){
+      out='career.log   the-story.md   why-hire-me.sh   scorecard.radar   about.txt   <span class="dim">.secrets/</span>';
+    } else if(name==='whoami'){
+      out = /--real|-r/.test(cmd)
+        ? '<span class="ok">a human</span> who turned data races into lock contracts and crashes into a pipeline — and still gets excited by a clean diff.'
+        : '<span class="ok">aman verma</span> — mobile engineer · iOS (Swift) → Kotlin Multiplatform · intern → feature lead (2023 → 2026)';
+    } else if(name==='sudo'){
+      out='<span class="err">nice try.</span> <span class="dim">this résumé already runs as root.</span>';
+    } else if(name==='42'){
+      out='<span class="warn">42</span> — the answer to life, the universe, and <span class="ok">"does it scale?"</span>';
+    } else if(name==='coffee'||name==='make'){
+      out='<span class="dim">      ( (\n       ) )\n    ........\n    |      |]\n    \\      /\n     `----\'</span>\n<span class="ok">brewed.</span> <span class="dim">now we can ship.</span>';
+    } else if(name==='theme'||name==='dark'||name==='light'){
+      toggleTheme(); out='<span class="ok">flipped the lights.</span>';
+    } else if(name==='konami'){
+      eggParty('🎮 you typed the cheat code'); out='<span class="ok">↑↑↓↓←→←→ B A</span> <span class="dim">— god mode.</span>';
+    } else if(name==='matrix'){
+      matrixRain(); return;
+    } else if(name==='secret'||/--secret/.test(cmd)){
+      out='<span class="warn">secret commands:</span>  matrix · coffee · 42 · theme · whoami --real · sudo rm -rf /  <span class="dim">· and the Konami code ↑↑↓↓←→←→BA</span>';
+    } else if(name==='clear'){
+      if(termOut) termOut.innerHTML=''; return;
+    } else {
+      out='<span class="err">zsh: command not found: '+escapeHtml(name)+'</span>  <span class="dim">— type <b>help</b></span>';
+    }
+    if(termOut) termOut.innerHTML='<div class="dim">aman@mobile ~ % '+escapeHtml(cmd)+'</div><div>'+out+'</div>';
+  }
+  if(termInput){
+    var tbodyEl=document.querySelector('.term-body');
+    if(tbodyEl) tbodyEl.addEventListener('click', function(e){ var tg=e.target; if(tg.tagName!=='BUTTON' && tg.tagName!=='A') termInput.focus(); });
+    termInput.addEventListener('keydown', function(e){
+      if(e.key==='Enter'){ var v=termInput.value; if(v.trim()){ cmdHist.push(v); } histIdx=cmdHist.length; runShell(v); termInput.value=''; }
+      else if(e.key==='ArrowUp'){ if(cmdHist.length){ histIdx=Math.max(0,histIdx-1); termInput.value=cmdHist[histIdx]||''; e.preventDefault(); } }
+      else if(e.key==='ArrowDown'){ if(cmdHist.length){ histIdx=Math.min(cmdHist.length,histIdx+1); termInput.value=cmdHist[histIdx]||''; e.preventDefault(); } }
+    });
+  }
+
+  // ---- scroll-mode motion: continuous fade IN and fade OUT, tied to scroll ----
+  var secs=document.querySelectorAll('.wrap > section');
+  var hasRaf = typeof window.requestAnimationFrame === 'function';
+  var scrollFxOn=false, fxRaf=0, lastScroll=0, scrollVel=0;
+  var progBar=document.getElementById('scrollProgBar');
+  var tbSec=document.getElementById('tbSec');
+  var scrollEl=document.scrollingElement||document.documentElement;
+  function clamp01(v){ return v<0?0:(v>1?1:v); }
+  // tag card grids so their children can reveal in a stagger
+  Array.prototype.forEach.call(document.querySelectorAll('.str, .patterns, .nums, .explore, .now-stats'), function(c){ c.classList.add('stwrap'); });
+  // build the topbar section-label map
+  var SEC_SHORT={'01':'the arc','02':'judgment arc','03':'weakness → strength','04':'crashes → pipeline','05':'what I bring','06':'signature patterns','07':'the stack','08':'the numbers','09':'the scorecard','10':'building now','11':"where I'm heading"};
+  var secMeta=[];
+  Array.prototype.forEach.call(secs,function(s){ var sn=s.querySelector('.shead .snum'); if(sn){ var num=sn.textContent.trim(); secMeta.push({el:s,label:num+' · '+(SEC_SHORT[num]||'')}); } else if(s.classList.contains('endcard')){ secMeta.push({el:s,label:'fin · the end'}); } });
+  function startCount(el){
+    if(el._counted) return; el._counted=true;
+    var target=parseFloat(el.getAttribute('data-count')); if(isNaN(target)) return;
+    if(reduce || !hasRaf){ el.textContent=target; return; }
+    var dur=1100, t0=null;
+    el.textContent='0';
+    function step(ts){ if(t0===null) t0=ts; var k=Math.min(1,(ts-t0)/dur); var e=1-Math.pow(1-k,3);
+      el.textContent=Math.round(target*e); if(k<1) requestAnimationFrame(step); else el.textContent=target; }
+    requestAnimationFrame(step);
+  }
+  function markSeen(s){ if(s.classList.contains('seen')) return; s.classList.add('seen');
+    var cs=s.querySelectorAll('[data-count]'); for(var j=0;j<cs.length;j++) startCount(cs[j]);
+    if(s.querySelector('#scoreRadarScroll')){ setGreet('scGreetScroll'); animateRadar('scoreRadarScroll'); } }
+  function updateScrollFx(){
+    fxRaf=0;
+    var vh=window.innerHeight||800, st=scrollEl.scrollTop;
+    var inst=Math.abs(st-lastScroll); lastScroll=st;
+    scrollVel = scrollVel*0.82 + inst*0.18;
+    var extraBlur = Math.min(2.5, scrollVel*0.05);
+    if(progBar){ var mx=scrollEl.scrollHeight-vh; progBar.style.width=((mx>0?st/mx:0)*100).toFixed(2)+'%'; }
+    document.body.style.backgroundPositionY=(-st*0.06).toFixed(1)+'px';   // faint grid parallax
+    var curLabel='';
+    for(var m=0;m<secMeta.length;m++){ var rr=secMeta[m].el.getBoundingClientRect(); if(rr.top<=vh*0.34 && rr.bottom>vh*0.18) curLabel=secMeta[m].label; }
+    if(tbSec){ if(curLabel){ tbSec.textContent=curLabel; tbSec.classList.add('show'); } else tbSec.classList.remove('show'); }
+    for(var i=0;i<secs.length;i++){
+      var s=secs[i], r=s.getBoundingClientRect();
+      var enter=clamp01((vh*0.92 - r.top)/(vh*0.30));   // slides + fades in from below
+      var leave=clamp01(r.bottom/(vh*0.22));            // fades back out as it exits the top
+      if(enter>0.5) markSeen(s);                        // fire inner header/card/bar/count reveals
+      var p=Math.min(enter,leave);
+      var e=p*p*(3-2*p);                                // smoothstep ease
+      var ty=(1-enter)*36 - (1-leave)*24;               // drift up on the way in and out
+      s.style.opacity=e;
+      s.style.transform='translateY('+ty.toFixed(1)+'px) scale('+(0.965+e*0.035).toFixed(4)+')';
+      var blur=(1-e)*3.2 + extraBlur;                   // extra blur while scrolling fast
+      s.style.filter = blur>0.06 ? 'blur('+blur.toFixed(2)+'px)' : 'none';
+    }
+    if(scrollVel>0.5){ fxRaf=requestAnimationFrame(updateScrollFx); } // decay velocity-blur to sharp
+  }
+  function requestFx(){ if(!fxRaf) fxRaf=requestAnimationFrame(updateScrollFx); }
+  function enableScrollFx(){
+    if(reduce || !hasRaf){ Array.prototype.forEach.call(secs,function(s){ s.classList.add('in'); s.classList.add('seen'); });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), startCount); return; }
+    if(scrollFxOn){ updateScrollFx(); return; }
+    scrollFxOn=true;
+    window.addEventListener('scroll', requestFx, {passive:true});
+    window.addEventListener('resize', requestFx);
+    updateScrollFx();
+  }
+  function disableScrollFx(){
+    if(!scrollFxOn) return;
+    scrollFxOn=false;
+    window.removeEventListener('scroll', requestFx);
+    window.removeEventListener('resize', requestFx);
+    if(fxRaf){ cancelAnimationFrame(fxRaf); fxRaf=0; }
+    Array.prototype.forEach.call(secs,function(s){ s.style.opacity=''; s.style.transform=''; s.style.filter=''; });
+    if(tbSec) tbSec.classList.remove('show');
+  }
+
+  // ---- scorecard radar ("star") chart, drawn into both terminal + scroll hosts ----
+  var RATINGS=[
+    {label:'Architecture', value:4.5},
+    {label:'Concurrency',  value:4.5},
+    {label:'Correctness',  value:4.0},
+    {label:'Testing',      value:3.5},
+    {label:'Simplicity',   value:3.5},
+    {label:'Learning',     value:5.0},
+    {label:'Ownership',    value:4.5}
+  ];
+  function buildRadar(host, data){
+    var NS='http://www.w3.org/2000/svg';
+    var W=460, H=330, cx=230, cy=160, R=104, labelR=R+22, maxV=5, base=3.5, n=data.length;
+    function el(tag,attrs){ var e=document.createElementNS(NS,tag); for(var k in attrs){ e.setAttribute(k,attrs[k]); } return e; }
+    function ang(i){ return (-Math.PI/2) + i*(2*Math.PI/n); }
+    function pt(i,rad){ var a=ang(i); return [cx+Math.cos(a)*rad, cy+Math.sin(a)*rad]; }
+    function ptsAt(rad){ var o=[]; for(var i=0;i<n;i++){ var p=pt(i,rad); o.push(p[0].toFixed(1)+','+p[1].toFixed(1)); } return o.join(' '); }
+    var svg=el('svg',{viewBox:'0 0 '+W+' '+H, class:'radar', role:'img',
+      'aria-label':'Radar chart of seven code-quality ratings, each scored out of five, with a 3.5 baseline'});
+    // concentric grid rings 1..5
+    for(var ring=1; ring<=maxV; ring++){ svg.appendChild(el('polygon',{points:ptsAt(R*ring/maxV), class:'rad-grid'})); }
+    // axes + axis labels (name + accent value)
+    for(var i=0;i<n;i++){
+      var o=pt(i,R);
+      svg.appendChild(el('line',{x1:cx, y1:cy, x2:o[0].toFixed(1), y2:o[1].toFixed(1), class:'rad-axis'}));
+      var lp=pt(i,labelR), a=ang(i), ca=Math.cos(a), sa=Math.sin(a);
+      var anchor = Math.abs(ca)<0.25 ? 'middle' : (ca>0?'start':'end');
+      var t=el('text',{x:lp[0].toFixed(1), y:lp[1].toFixed(1), class:'rad-label', 'text-anchor':anchor,
+        'dominant-baseline': sa>0.3?'hanging':(sa<-0.3?'auto':'middle')});
+      t.appendChild(document.createTextNode(data[i].label+' '));
+      var v=el('tspan',{class:'rad-val'}); v.textContent=data[i].value.toFixed(1); t.appendChild(v);
+      svg.appendChild(t);
+    }
+    // scale numbers up the top axis
+    for(var sN=1; sN<=maxV; sN++){ var ty=cy - R*sN/maxV; svg.appendChild((function(){ var e=el('text',{x:cx+5, y:ty.toFixed(1), class:'rad-scale', 'dominant-baseline':'middle'}); e.textContent=sN; return e; })()); }
+    // 3.5 baseline ring
+    svg.appendChild(el('polygon',{points:ptsAt(R*base/maxV), class:'rad-base'}));
+    // data polygon + vertex dots
+    svg.appendChild(el('polygon',{points:(function(){ var o=[]; for(var i=0;i<n;i++){ var p=pt(i,R*data[i].value/maxV); o.push(p[0].toFixed(1)+','+p[1].toFixed(1)); } return o.join(' '); })(), class:'rad-poly'}));
+    for(var i=0;i<n;i++){ var p=pt(i,R*data[i].value/maxV); svg.appendChild(el('circle',{cx:p[0].toFixed(1), cy:p[1].toFixed(1), r:3, class:'rad-dot'})); }
+    host.textContent=''; host.appendChild(svg);
+  }
+  ['scoreRadarTerm','scoreRadarScroll'].forEach(function(id){ var h=document.getElementById(id); if(!h) return;
+    buildRadar(h, RATINGS);
+    if(!reduce && hasRaf){ var sv=h.querySelector('.radar'); if(sv) sv.classList.add('armed'); } });
+  function animateRadar(hostId){
+    var h=document.getElementById(hostId); if(!h) return;
+    var svg=h.querySelector('.radar'); if(!svg || reduce || !hasRaf) return;
+    svg.classList.add('armed'); svg.classList.remove('draw-in');
+    void svg.getBoundingClientRect();
+    requestAnimationFrame(function(){ svg.classList.add('draw-in'); });
+  }
+
+  // ---- end-of-scroll reward: confetti burst + staggered pop-in ----
+  function fireConfetti(canvas, light){
+    if(reduce || !hasRaf || !canvas || !canvas.getContext) return;
+    var ctx=canvas.getContext('2d'); if(!ctx) return;
+    var rect=canvas.getBoundingClientRect();
+    var W=canvas.width=Math.max(1,rect.width|0), H=canvas.height=Math.max(1,rect.height|0);
+    var colors=['#15924F','#45D98A','#0E8C78','#B8791A','#15508C','#4Fd1b5'];
+    var N=light?60:140, spread=light?0.5:0.7, parts=[];
+    for(var i=0;i<N;i++){
+      parts.push({ x:W*(0.5+(Math.random()-0.5)*spread), y:H*0.18+Math.random()*20,
+        vx:(Math.random()-0.5)*(light?5:7), vy:Math.random()*-(light?5:7)-2, g:0.16+Math.random()*0.14,
+        s:4+Math.random()*(light?4:6), rot:Math.random()*6.283, vr:(Math.random()-0.5)*0.35,
+        c:colors[i%colors.length], life:0, max:(light?70:95)+Math.random()*(light?35:55) });
+    }
+    var frame=0, maxF=light?160:220;
+    (function anim(){
+      ctx.clearRect(0,0,W,H); var alive=false;
+      for(var i=0;i<parts.length;i++){ var p=parts[i]; if(p.life>p.max) continue;
+        p.life++; alive=true; p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+        ctx.save(); ctx.globalAlpha=Math.max(0,1-p.life/p.max); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+        ctx.fillStyle=p.c; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.6); ctx.restore();
+      }
+      frame++;
+      if(alive && frame<maxF) requestAnimationFrame(anim); else ctx.clearRect(0,0,W,H);
+    })();
+  }
+  var endcard=document.getElementById('endcard'), endFired=false, endPlays=0;
+  function fireEnd(){ if(endFired||!endcard) return; endFired=true; endcard.classList.add('fire'); fireConfetti(document.getElementById('confetti'), endPlays>0); endPlays++; }
+  if(endcard){
+    if(('IntersectionObserver' in window) && !reduce){
+      var eio=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting) fireEnd(); }); }, {threshold:0.3});
+      eio.observe(endcard);
+    } else { endcard.classList.add('fire'); }
+  }
+
+  // ---- replay the whole story ----
+  var origCounts=[];
+  Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function(el){ origCounts.push([el, el.getAttribute('data-count')]); });
+  var replayStoryBtn=document.getElementById('replayStory');
+  if(replayStoryBtn){ replayStoryBtn.addEventListener('click', function(){
+    Array.prototype.forEach.call(secs, function(s){ s.classList.remove('seen'); });
+    origCounts.forEach(function(pair){ pair[0]._counted=false; pair[0].textContent=pair[1]; });
+    var sv=document.querySelector('#scoreRadarScroll .radar'); if(sv) sv.classList.remove('draw-in');
+    endFired=false; if(endcard) endcard.classList.remove('fire');
+    window.scrollTo({top:0, behavior: reduce?'auto':'smooth'});
+  }); }
+
+  // ---- pointer micro-interactions: card tilt + magnetic CTAs ----
+  var finePointer = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(finePointer && !reduce){
+    Array.prototype.forEach.call(document.querySelectorAll('.scard, .pat, .ncard'), function(card){
+      card.addEventListener('mousemove', function(e){ if(card.classList.contains('flipped')) return; var r=card.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+        card.style.transition='transform 0s'; card.style.transform='perspective(800px) rotateX('+(-py*6).toFixed(2)+'deg) rotateY('+(px*6).toFixed(2)+'deg) translateY(-2px)'; });
+      card.addEventListener('mouseleave', function(){ if(card.classList.contains('flipped')) return; card.style.transition='transform .4s cubic-bezier(.2,.7,.2,1)'; card.style.transform=''; });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.end-cta .ec'), function(b){
+      b.addEventListener('mousemove', function(e){ var r=b.getBoundingClientRect();
+        b.style.transform='translate('+((e.clientX-(r.left+r.width/2))*0.25).toFixed(1)+'px,'+((e.clientY-(r.top+r.height/2))*0.35).toFixed(1)+'px)'; });
+      b.addEventListener('mouseleave', function(){ b.style.transform=''; });
+    });
+  }
+
+  // ---- two presentation modes: terminal / scroll ----
+  var body=document.body;
+  function setPM(pm){
+    body.classList.remove('mode-terminal','mode-scroll'); body.classList.add('mode-'+pm);
+    document.querySelectorAll('.pm').forEach(function(x){ var on=(x.getAttribute('data-pm')===pm); x.classList.toggle('on',on); x.setAttribute('aria-selected', on?'true':'false'); });
+    if(pm==='terminal'){ disableScrollFx(); runTerminal(curMode||'log'); }
+    else { window.scrollTo(0,0); enableScrollFx(); }
+  }
+  document.querySelectorAll('.pm').forEach(function(b){ b.addEventListener('click', function(){ setPM(b.getAttribute('data-pm')); }); });
+
+  // ---- keyboard navigation + command palette ----
+  function inEditable(){ var a=document.activeElement; return a && (a.tagName==='INPUT'||a.tagName==='TEXTAREA'||a.isContentEditable); }
+  function scrollToSec(el){ if(body.classList.contains('mode-terminal')) setPM('scroll'); if(reduce) el.scrollIntoView(); else el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  function currentSecIndex(){ var vh=window.innerHeight||800, best=0; for(var i=0;i<secMeta.length;i++){ if(secMeta[i].el.getBoundingClientRect().top<=vh*0.4) best=i; } return best; }
+  var cmdk=document.getElementById('cmdk'), cmdkIn=document.getElementById('cmdkIn'), cmdkList=document.getElementById('cmdkList'), cmdkSel=0, cmdkItems=[];
+  function renderCmdk(filter){
+    filter=(filter||'').toLowerCase(); if(!cmdkList) return; cmdkList.innerHTML=''; cmdkItems=[];
+    secMeta.forEach(function(meta){ if(filter && meta.label.toLowerCase().indexOf(filter)<0) return;
+      var parts=meta.label.split(' · '), num=parts[0], rest=parts.slice(1).join(' · ');
+      var d=document.createElement('div'); d.className='cmdk-item'; d.innerHTML='<span class="n">'+num+'</span><span>'+rest+'</span>';
+      d.addEventListener('click', function(){ closeCmdk(); scrollToSec(meta.el); });
+      cmdkList.appendChild(d); cmdkItems.push({el:d, target:meta.el}); });
+    cmdkSel=0; highlightCmdk();
+  }
+  function highlightCmdk(){ cmdkItems.forEach(function(it,i){ it.el.classList.toggle('sel', i===cmdkSel); }); if(cmdkItems[cmdkSel]) cmdkItems[cmdkSel].el.scrollIntoView({block:'nearest'}); }
+  function openCmdk(){ if(!cmdk) return; cmdk.classList.add('open'); cmdkIn.value=''; renderCmdk(''); cmdkIn.focus(); }
+  function closeCmdk(){ if(cmdk) cmdk.classList.remove('open'); }
+  if(cmdkIn){
+    cmdkIn.addEventListener('input', function(){ renderCmdk(cmdkIn.value); });
+    cmdkIn.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'){ cmdkSel=Math.min(cmdkItems.length-1,cmdkSel+1); highlightCmdk(); e.preventDefault(); }
+      else if(e.key==='ArrowUp'){ cmdkSel=Math.max(0,cmdkSel-1); highlightCmdk(); e.preventDefault(); }
+      else if(e.key==='Enter'){ if(cmdkItems[cmdkSel]){ closeCmdk(); scrollToSec(cmdkItems[cmdkSel].target); } }
+      else if(e.key==='Escape'){ closeCmdk(); }
+    });
+  }
+  if(cmdk){ cmdk.addEventListener('click', function(e){ if(e.target===cmdk) closeCmdk(); }); }
+  document.addEventListener('keydown', function(e){
+    if((e.key==='k'||e.key==='K') && (e.metaKey||e.ctrlKey)){ e.preventDefault(); if(cmdk&&cmdk.classList.contains('open')) closeCmdk(); else openCmdk(); return; }
+    if(cmdk && cmdk.classList.contains('open')) return;
+    if(inEditable()) return;
+    if(e.key==='/'){ e.preventDefault(); openCmdk(); return; }
+    if(e.key==='t'||e.key==='T'){ setPM(body.classList.contains('mode-terminal')?'scroll':'terminal'); return; }
+    if(body.classList.contains('mode-terminal')) return;
+    if(e.key==='j'||e.key==='ArrowDown'){ var i=currentSecIndex(); if(i<secMeta.length-1){ scrollToSec(secMeta[i+1].el); e.preventDefault(); } }
+    else if(e.key==='k'||e.key==='ArrowUp'){ var i2=currentSecIndex(); if(i2>0){ scrollToSec(secMeta[i2-1].el); e.preventDefault(); } }
+    else if(e.key==='g'){ window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
+    else if(e.key==='G'){ window.scrollTo({top:scrollEl.scrollHeight,behavior:reduce?'auto':'smooth'}); }
+  });
+
+  // ================= greetings, flips & easter eggs =================
+  var GREETS=['Hi, stranger 👋','Well, hello there.','Oh — a visitor.','Hey, you made it.','Greetings, traveler.','Fancy seeing you here.','Hi there, curious one.','Welcome, whoever you are.','Hey you. Yeah, you.'];
+  function setGreet(id){ var el=document.getElementById(id); if(el) el.textContent=GREETS[Math.floor(Math.random()*GREETS.length)]+"  — here's the honest scorecard."; }
+
+  // toast + party confetti
+  var eggToast=document.getElementById('eggToast'), toastT=null;
+  function toast(msg){ if(!eggToast) return; eggToast.textContent=msg; eggToast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){ eggToast.classList.remove('show'); }, 2800); }
+  function eggParty(msg){ if(msg) toast(msg);
+    if(reduce || !hasRaf) return;
+    var cv=document.createElement('canvas'); cv.className='party-canvas'; document.body.appendChild(cv);
+    fireConfetti(cv, false);
+    setTimeout(function(){ if(cv.parentNode) cv.parentNode.removeChild(cv); }, 4200);
+  }
+
+  // matrix rain inside the terminal
+  function matrixRain(){
+    if(!termOut) return;
+    if(reduce || !hasRaf){ termOut.innerHTML='<div class="ok">wake up, Neo…</div><div class="dim">(matrix needs motion enabled)</div>'; return; }
+    termOut.innerHTML=''; var cv=document.createElement('canvas'); cv.className='term-matrix'; termOut.appendChild(cv);
+    var w=cv.width=cv.clientWidth||600, h=cv.height=220, ctx=cv.getContext('2d'); if(!ctx){ return; }
+    var cols=Math.floor(w/12), ys=[]; for(var i=0;i<cols;i++) ys[i]=Math.random()*h;
+    var chars='01ｱｲｳｴｵｶｷｸ<>/{}[]();=+*&^%$#@!', frames=0;
+    (function draw(){ ctx.fillStyle='rgba(6,12,16,0.16)'; ctx.fillRect(0,0,w,h); ctx.fillStyle='#4Fd1b5'; ctx.font='13px monospace';
+      for(var i=0;i<cols;i++){ ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*12, ys[i]); ys[i]+=13; if(ys[i]>h && Math.random()>0.975) ys[i]=0; }
+      frames++; if(frames<200) requestAnimationFrame(draw); else termOut.innerHTML='<div class="dim">// there is no spoon.</div>'; })();
+  }
+
+  // konami code
+  var KON=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'], konPos=0;
+  document.addEventListener('keydown', function(e){
+    var k=e.key.length===1?e.key.toLowerCase():e.key;
+    if(k===KON[konPos]){ konPos++; if(konPos===KON.length){ konPos=0; eggParty('🎮 konami unlocked — god mode on'); } }
+    else { konPos=(k===KON[0])?1:0; }
+  });
+
+  // clickable terminal window dots
+  var termEl=document.getElementById('term');
+  var dotR=document.querySelector('.term-bar .dot.r'), dotY=document.querySelector('.term-bar .dot.y'), dotG=document.querySelector('.term-bar .dot.g');
+  if(dotR){ dotR.title='close'; dotR.addEventListener('click', function(){ if(termEl){ termEl.classList.remove('shake'); void termEl.offsetWidth; termEl.classList.add('shake'); } toast("nice try — this one doesn't close 🙂"); }); }
+  if(dotY){ dotY.title='minimize'; dotY.addEventListener('click', function(){ if(termEl) termEl.classList.toggle('min'); }); }
+  if(dotG){ dotG.title='zoom'; dotG.addEventListener('click', function(){ if(termEl) termEl.classList.toggle('max'); }); }
+
+  // triple-click the brand → blueprint mode
+  var brand=document.querySelector('.tb-brand'), brandN=0, brandT=null;
+  if(brand){ brand.style.cursor='pointer'; brand.addEventListener('click', function(){ brandN++; clearTimeout(brandT); brandT=setTimeout(function(){ brandN=0; }, 600);
+    if(brandN>=3){ brandN=0; body.classList.toggle('blueprint'); toast(body.classList.contains('blueprint')?'⌁ blueprint mode on':'blueprint off'); } }); }
+
+  // double-click card flip
+  var BACKS={
+    'I build platforms, not just features':'Handed a feature, I ship the framework under it — DQAnalytics SDK: CoreData offline queue, SSL-pinned session, priority batching.',
+    'I reach for the hard-correct pattern':'Single-flight token refresh + response interceptor — as an intern. Env-aware thresholds. Bugs landed in concurrency corners, not basic logic.',
+    'I compound feedback, fast':'My worst 2023 bug — unsynchronized data races — is now 32 documented Mutex locks with a single-writer contract. A named weakness → a named strength.',
+    'My code reads as designed':'97 protocols · 91 typed event classes · provider interfaces · 7 typed enums. Extend by adding a type, never by editing a monolith.',
+    'One source of truth, made safe':'Token manager (2023) → documented Mutex single-writer contract (2026). Same instinct, done right.',
+    'Interface-first, not inline':'Define the contract before the implementation — 97 protocols, provider interfaces, SDK boundaries.',
+    'Build the reusable layer':'Analytics SDK · crash-fix pipeline · PR-review worker — the layer the whole team ends up standing on.',
+    'Reach one rung up':'Single-flight refresh as a junior — pick the harder-correct pattern before you have fully mastered it.',
+    'Turn a weakness into infrastructure':'Races → a lock contract. Hand-fixing crashes → an automated pipeline. Flaws become systems.',
+    'Carry a domain across platforms':'Analytics iOS→Android→KMM · webinar iOS→Android — knowledge kept, not restarted from zero.'
+  };
+  function makeFlip(card){
+    if(card._flip) return; card._flip=true; card.classList.add('flipcard');
+    var h=card.querySelector('h3,h4'), key=h?h.textContent.trim():'';
+    var line=BACKS[key];
+    if(!line){ var tr=card.querySelector('.trans'); if(tr) line=tr.textContent.replace(/\s+/g,' ').trim();
+      else { var chips=Array.prototype.map.call(card.querySelectorAll('.chip'),function(c){return c.textContent;}); line=chips.length?chips.join(' · '):'no secrets here… just clean, boring, reliable code.'; } }
+    var back=document.createElement('div'); back.className='card-back';
+    back.innerHTML='<div class="bk-label">// the receipts</div><div class="bk-text">'+line+'</div><div class="bk-hint">double-click to flip back ↩</div>';
+    card.appendChild(back);
+    card.setAttribute('tabindex','0');
+    card.addEventListener('dblclick', function(){ card.style.transition=''; card.style.transform=''; card.classList.toggle('flipped'); });
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter'){ card.style.transition=''; card.style.transform=''; card.classList.toggle('flipped'); } });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.scard, .pat, .ncard'), makeFlip);
+
+  // a hello for the devs who open the console
+  try{
+    console.log('%cHi, curious dev 👋','color:#0E8C78;font-size:16px;font-weight:700');
+    console.log('%cYou opened the inspector on a résumé. That is exactly the energy I hire for.','color:#8A939D');
+    console.log('%cPsst — the terminal has secret commands: matrix · coffee · 42 · theme. And there is a Konami code.','color:#B8791A');
+    console.log('%c→ let\'s talk: a4amanver15@gmail.com','color:#15508C;font-weight:700');
+  }catch(e){}
+
+  setPM('terminal'); // land on the terminal
+})();
+</script>
+
+</body></html>
